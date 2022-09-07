@@ -156,3 +156,4 @@ app.post('/api/login', (req,res)=>{
 
 app.post('/login', require('./router/postLogin'));
 app.post('/loginafter', require('./router/postLoginAfter'));
+app.post('/group', require('./router/group'));

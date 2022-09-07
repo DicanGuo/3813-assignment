@@ -17,7 +17,7 @@ const BACKEND_URL = 'http://localhost:3000';
 export class HomeComponent implements OnInit {
   valid = sessionStorage.getItem('valid');
   username = sessionStorage.getItem('username');
-  id = sessionStorage.getItem('id');
+  userid = sessionStorage.getItem('userid');
   role = sessionStorage.getItem('role');
   email = sessionStorage.getItem('email');
   groupsSession = sessionStorage.getItem('groupsSession')!;
@@ -44,12 +44,9 @@ export class HomeComponent implements OnInit {
 
   }
   test(){
-    console.log(this.groupsSession)
-
-    console.log(this.groups[0]['id'])
-    console.log(this.groups[1]['id'])
-    console.log(this.groups[2]['id'])
-
+    let user = {role:this.role};
+    this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
+      console.log(data);})
   }
   group(){
     this.router.navigateByUrl('/group');

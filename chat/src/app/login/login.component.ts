@@ -84,6 +84,10 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('valid', 'true');
         sessionStorage.setItem('userid', data.userid.toString());
         sessionStorage.setItem('username', data.username);
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('role', data.role);
+
+        sessionStorage.setItem('allUser', JSON.stringify(data.allUser));
 
         this.router.navigateByUrl("/home");
       }

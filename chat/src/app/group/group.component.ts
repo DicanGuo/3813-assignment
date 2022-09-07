@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GroupComponent implements OnInit {
   valid = sessionStorage.getItem('valid');
   username = sessionStorage.getItem('username');
-  id = sessionStorage.getItem('id');
+  userid = sessionStorage.getItem('userid');
   role = sessionStorage.getItem('role');
   email = sessionStorage.getItem('email');
   groupsSession = sessionStorage.getItem('groupsSession')!;

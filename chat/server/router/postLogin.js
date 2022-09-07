@@ -28,6 +28,7 @@ module.exports = function(req, res) {
                 console.log(userData);
                 res.send(userData);
             })
+
         }
     });
 
