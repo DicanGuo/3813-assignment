@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   email: string = '';
   // errorMassage = "User credential not match";
   errorMassage = "";
-  
+  password = '';
+
   user = {'username': '', 'email': ''}
   // constructor(private router:Router, private httpClient: HttpClient) { }
 
@@ -68,5 +69,25 @@ constructor(private router:Router, private httpClient: HttpClient ){}
     }
     );
     
+  }
+ 
+  submit(){
+    let user = {username:this.username, email: this.email};
+    this.httpClient.post(BACKEND_URL + '/login', user,  httpOptions)
+    // this.httpClient.post(BACKEND_URL + '/login', user)
+    .subscribe((data:any)=>{
+      // alert("posting: " +JSON.stringify(user));
+
+      // alert("postRes: " +JSON.stringify(data));
+
+      if (data.ok){
+        sessionStorage.setItem('valid', 'true');
+        sessionStorage.setItem('userid', data.userid.toString());
+        sessionStorage.setItem('username', data.username);
+
+        this.router.navigateByUrl("/home");
+      }
+      else { alert("email or password incorrect");}
+    })
   }
 }

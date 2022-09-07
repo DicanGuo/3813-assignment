@@ -153,3 +153,6 @@ app.post('/api/login', (req,res)=>{
     res.send(data);
 
 });
+
+app.post('/login', require('./router/postLogin'));
+app.post('/loginafter', require('./router/postLoginAfter'));

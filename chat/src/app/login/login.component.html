@@ -8,4 +8,14 @@
         <button (click)="login()" type="button" class="fadeIn fourth" value="Log In">Log</button>
       </form>
     </div>
-  </div>
+</div>
+
+  <!-- JSON login -->
+
+<div id="formContent">
+  <form>
+      <input type="username" name="username" [(ngModel)]=" username" class="fadeIn second" placeholder="username">
+      <input type="email" name="email" [(ngModel)]=" email" class="fadeIn third" placeholder="email">
+  </form>
+  <button (click)="submit()" class="fadeIn fourth"> submit</button>
+</div>

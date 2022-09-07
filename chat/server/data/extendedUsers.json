@@ -1,0 +1,6 @@
+[
+    {"userid":1,"username":"1","email":"1","userage":30000, "role":30000},
+    {"userid":2,"username":"kailepku@gmail.com","userbirthdate":"2022-09-23","userage":20000},
+    {"userid":1,"username":"ttt","userbirthdate":"2022-12-22","userage":30000},
+    {"userid":4,"username":"1","userbirthdate":"2022-12-22","userage":30000}
+]
