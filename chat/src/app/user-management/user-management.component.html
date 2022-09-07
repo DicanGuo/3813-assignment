@@ -1,1 +1,15 @@
-<p>user-management works!</p>
+<h1>User Management</h1>
+<div *ngIf="role== 'super'">
+    <div *ngFor="let user of userArray">
+        <p>user name: {{user.username}}</p>
+        <p>email: {{user.email}}</p>
+        <div *ngFor="let extendedUser of extendedUserArray">
+            <div *ngIf="extendedUser.username == user.username">
+                <p>user ID: {{extendedUser.userid}}</p>
+                <p>{{extendedUser.role}}</p>
+            </div>
+        </div>
+        
+        <p>------------------</p>
+    </div>
+</div>

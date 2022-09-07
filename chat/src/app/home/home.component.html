@@ -29,8 +29,8 @@
 
 <div>
     <ng-template [ngIf]="role== 'super'">
-        <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
-        <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
+        <button id="submit" type="button" class="fadeIn fourth" value="Log In" routerLink="/users">User Management</button>
+        <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
 
         <button (click)="group()" id="submit" type="button" class="fadeIn fourth" value="Log In">Group Management</button>
 

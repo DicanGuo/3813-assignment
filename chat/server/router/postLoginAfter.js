@@ -13,6 +13,8 @@ module.exports = function(req, res) {
         if (err) throw err;
         uArray = JSON.parse(data);
         console.log(userobj);
+        alluArray = uArray;
+        console.log(alluArray)
         // make some change according to user's post 
         let i = uArray.findIndex(x => x.username == userobj.username);
         if (i == -1) {
@@ -20,8 +22,14 @@ module.exports = function(req, res) {
         } else {
             uArray[i] = userobj;
         }
+        if(userobj.role == 'super'){
+            let usersData = {alluArray, uArray}
+            res.send(usersData);
+        } else {
+            res.send(uArray);
+        }
         // send response to user
-        res.send(uArray);
+        // res.send(uArray);
         // save the file of user list
         let uArrayjson = JSON.stringify(uArray);
         fs.writeFile('./data/extendedUsers.json', uArrayjson, 'utf-8', function(err) {

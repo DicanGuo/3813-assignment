@@ -42,11 +42,7 @@ constructor(private router:Router, private httpClient: HttpClient ){}
       // console.log('email: ' + data.email)
       // console.log('id: ' + data.id)
       // console.log('role: ' + data.role)
-
-
-
       // console.log(sessionStorage)
-
       // alert(JSON.stringify(this.email));
       if (data.userinfo.valid) {
         //user info
@@ -86,9 +82,6 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('username', data.username);
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('role', data.role);
-
-        sessionStorage.setItem('allUser', JSON.stringify(data.allUser));
-
         this.router.navigateByUrl("/home");
       } else if (data.userData.ok){
         sessionStorage.setItem('valid', 'true');
@@ -98,6 +91,7 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('role', data.userData.role);
 
         sessionStorage.setItem('userArray', JSON.stringify(data.userArray));
+        sessionStorage.setItem('extendedUserArray', JSON.stringify(data.extendedUserArray));
 
         this.router.navigateByUrl("/home");
       }

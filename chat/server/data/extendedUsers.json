@@ -1,11 +1,11 @@
 [
-    {"userid":1,"username":"1","email": "1", "role": "super"},
-    {"userid":2,"username":"2","email": "1", "role": "gdmin"},
-    {"userid":3,"username":"3","email": "1", "role": "gassis"},
-    {"userid":4,"username":"4","email": "1", "role": "user"},
-    {"userid":5,"username":"5","email": "1", "role": "user"},
-    {"userid":6,"username":"6","email": "1", "role": "user"},
-    {"userid":7,"username":"7","email": "1", "role": "user"},
-    {"userid":8,"username":"8","email": "1", "role": "user"}
+    {"userid":1,"username":"1", "role": "super"},
+    {"userid":2,"username":"2", "role": "gdmin"},
+    {"userid":3,"username":"3", "role": "gassis"},
+    {"userid":4,"username":"first", "role": "user"},
+    {"userid":5,"username":"second", "role": "user"},
+    {"userid":6,"username":"third", "role": "user"},
+    {"userid":7,"username":"7", "role": "user"},
+    {"userid":8,"username":"8", "role": "user"}
 
 ]

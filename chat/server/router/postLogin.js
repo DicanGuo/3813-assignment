@@ -9,7 +9,7 @@ module.exports = function(req, res) {
         // the above path is with respect to where we run server.js
         if (err) throw err;
         let userArray = JSON.parse(data);
-        console.log('user Array' + userArray);
+        // console.log('user Array' + userArray);
         let i = userArray.findIndex(user =>
             ((user.username == u) && (user.email == p)));
         if (i == -1) {
@@ -25,9 +25,9 @@ module.exports = function(req, res) {
                     ((user.username == u)));
                 let userData = extendedUserArray[i];
                 userData["ok"] = true;
-                console.log('login:' + userData);
+                // console.log('login:' + userData);
                 if(userData.role == 'super'){
-                    let postData = {userData, userArray}
+                    let postData = {userData, userArray, extendedUserArray}
                     res.send(postData);
                 } else {
                     res.send(userData);
