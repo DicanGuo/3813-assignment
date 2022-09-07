@@ -39,7 +39,12 @@ app.post('/api/login', (req,res)=>{
     //     {'email': 'abd@com.au', 'password': '123'}, 
     //     {'email': 'abe@com.au', 'password': '123'}, ]
     let users = [
-        {'username': 'first',
+        {'username': '1',
+        'birthdate': '01/01/1991',
+        'age': 31,
+        'email': 'first@gmail.com',
+        'password': '1',
+        'valid': false},        {'username': 'first',
         'birthdate': '01/01/1991',
         'age': 31,
         'email': 'first@gmail.com',

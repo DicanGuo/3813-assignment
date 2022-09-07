@@ -1,6 +1,7 @@
 <div class="container wrapper fadeInDown">
     <div id="formContent">
       <h1 id = 'errorMassage'>{{errorMassage}}</h1>
+      <h1>Hello {{username}}</h1>
       <form id="chatForm">
         <input type="text" [(ngModel)]="messagecontent" id="messagecontent" class="fadeIn second" name="messagecontent" placeholder="Say something..."><br><br>
         <button (click)="chat()" type="button" class="fadeIn fourth" value="Post">Post</button>
