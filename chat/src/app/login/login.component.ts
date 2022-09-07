@@ -90,6 +90,16 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('allUser', JSON.stringify(data.allUser));
 
         this.router.navigateByUrl("/home");
+      } else if (data.userData.ok){
+        sessionStorage.setItem('valid', 'true');
+        sessionStorage.setItem('userid', data.userData.userid.toString());
+        sessionStorage.setItem('username', data.userData.username);
+        sessionStorage.setItem('email', data.userData.email);
+        sessionStorage.setItem('role', data.userData.role);
+
+        sessionStorage.setItem('userArray', JSON.stringify(data.userArray));
+
+        this.router.navigateByUrl("/home");
       }
       else { alert("email or password incorrect");}
     })
