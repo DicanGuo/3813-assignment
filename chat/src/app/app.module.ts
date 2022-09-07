@@ -10,6 +10,7 @@ import { SocketService } from './services/socket.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { GroupComponent } from './group/group.component';
+import { ChannelComponent } from './channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GroupComponent } from './group/group.component';
     ChatComponent,
     LoginComponent,
     HomeComponent,
-    GroupComponent
+    GroupComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,
