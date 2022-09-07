@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-management',
@@ -14,9 +15,14 @@ export class UserManagementComponent implements OnInit {
   userArray = JSON.parse(sessionStorage.getItem('userArray')!);
   extendedUserArray = JSON.parse(sessionStorage.getItem('extendedUserArray')!);
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  create(){
+    this.router.navigateByUrl("/create-user");
+
   }
 
 }

@@ -2,7 +2,7 @@ var fs = require('fs');
 
 module.exports = function(req, res) {
     let userobj = {
-        "userid": req.body.userid,
+        "userid": null,
         "username": req.body.username,
         "role": req.body.role,
         "email": req.body.email
@@ -17,8 +17,23 @@ module.exports = function(req, res) {
         console.log(alluArray)
         // make some change according to user's post 
         let i = uArray.findIndex(x => x.username == userobj.username);
+        let idlist = [];
+
         if (i == -1) {
+            for(j in uArray){
+                idlist.push(j.userid);
+                // console.log(idlist)
+            }
+            for(k=0; k < (idlist.length+2); k++){
+                // console.log(k)
+                if(!(k in idlist)){
+                    userobj.userid = k;
+                    break
+                }
+                
+            }
             uArray.push(userobj);
+
         } else {
             uArray[i] = userobj;
         }

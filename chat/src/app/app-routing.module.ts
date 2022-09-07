@@ -7,6 +7,7 @@ import { GroupComponent } from './group/group.component';
 import { ChannelComponent } from './channel/channel.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddGroupComponent } from './add-group/add-group.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'group/:id/channel/:id', component: ChannelComponent},
   {path: 'users', component: UserManagementComponent},
   {path: 'add-group', component: AddGroupComponent},
+  {path: 'create-user', component: CreateUserComponent},
 
 
 ];
