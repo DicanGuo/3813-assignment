@@ -15,12 +15,12 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userid: string = '';
-  password: string = '';
+  username: string = '';
+  email: string = '';
   // errorMassage = "User credential not match";
   errorMassage = "";
   
-  user = {'userid': '', 'password': ''}
+  user = {'username': '', 'email': ''}
   // constructor(private router:Router, private httpClient: HttpClient) { }
 
 constructor(private router:Router, private httpClient: HttpClient ){}
@@ -28,40 +28,35 @@ constructor(private router:Router, private httpClient: HttpClient ){}
   ngOnInit(): void {
   }
   login(){
-    console.log('user inputs:', this.userid, this.password);
+    console.log('user inputs:', this.username, this.email);
     console.log('login clicked');
 
-    // let user = {'username': this.userid, 'password': this.password, 'birthdate': null, 'age':null,'email':null, 'valid':false}
-    // console.log('default value:' + user);
-
-    // this.httpClient.post(BACKEND_URL + '/api/login', user,  httpOptions).subscribe((data:any)=>{
-    // this.httpClient.post(BACKEND_URL + '/api/login', user).subscribe(res=>
-    //   {console.log(res);},);
-
-    let userLogin = {'username': this.userid, 'password': this.password}
+    let userLogin = {'username': this.username, 'email': this.email}
     this.httpClient.post(BACKEND_URL + '/api/login', userLogin).subscribe((data: any)=>{
       console.log(data)
-      console.log(data.username)
-      console.log(data.password)
-      console.log(data.valid)
+      console.log('username: ' + data.username)
+      console.log('valid: ' + data.valid)
+      console.log('email: ' + data.email)
+      console.log('id: ' + data.id)
+      console.log('role: ' + data.role)
 
-      console.log(data.email)
-      console.log(data.age)
 
 
       // console.log(sessionStorage)
 
-      // alert(JSON.stringify(this.password));
+      // alert(JSON.stringify(this.email));
       if (data.valid) {
-        sessionStorage.setItem('username', this.userid);
+        sessionStorage.setItem('username', this.username);
         sessionStorage.setItem('birthdate', data.birthdate);
         sessionStorage.setItem('age', data.age);
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('valid', data.valid);
+        sessionStorage.setItem('role', data.role);
         console.log('valid user' + sessionStorage);
-        this.router.navigateByUrl('/chat/' + this.userid);
+        this.router.navigateByUrl('/chat/' + this.username);
+        // this.router.navigateByUrl('/home');
 
-      } else { alert("email or password incorrect");}
+      } else { alert("username or email incorrect");}
     }
     );
     

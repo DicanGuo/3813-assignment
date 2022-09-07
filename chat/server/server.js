@@ -9,8 +9,6 @@ app.use(express.static(__dirname + '/www'));
 // use bodyparser
 app.use(express.json());
 
-
-
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -34,57 +32,50 @@ server.listen(http, PORT);
 
 //route for check inputs
 app.post('/api/login', (req,res)=>{
-    // let users = [
-    //     {'email': 'abc@com.au', 'password': '123'}, 
-    //     {'email': 'abd@com.au', 'password': '123'}, 
-    //     {'email': 'abe@com.au', 'password': '123'}, ]
     let users = [
         {'username': '1',
-        'birthdate': '01/01/1991',
-        'age': 31,
+        'id': 1,
+        // 'email': 'super@gmail.com',
+        'email': '1',
+        'valid': false,
+        'role': 'super'},                   
+        {'username': '2',
+        'id': 2,
+        'email': 'group@gmail.com',
+        'valid': false,
+        'role': 'group'},
+        {'username': 'first',
+        'id': 3,
         'email': 'first@gmail.com',
-        'password': '1',
-        'valid': false},        {'username': 'first',
-        'birthdate': '01/01/1991',
-        'age': 31,
-        'email': 'first@gmail.com',
-        'password': '123456',
-        'valid': false},
+        'valid': false,
+        'role': 'user'},
         {'username': 'second',
-        'birthdate': '01/01/1991',
-        'age': 31,
+        'id': 4,
         'email': 'second@gmail.com',
-        'password': '654321',
-        'valid': false},
+        'valid': false,
+        'role': 'user'},
         {'username': 'third',
-        'birthdate': '01/01/1991',
-        'age': 31,
+        'id': 5,
         'email': 'third@gmail.com',
-        'password': '555555',
-        'valid': false},
+        'valid': false,
+        'role': 'user'},
+    ]
+    let groups = [
+        {}
     ]
     if (!req.body) {
         return res.sendStatus(400)
     }
     var customer = {};
     customer.username = req.body.username;
-    customer.password = req.body.password;
+    customer.email = req.body.email;
     customer.valid = false;
     for (let i = 0; i < users.length; i ++){
-        if (req.body.username == users[i].username && req.body.password == users[i].password){
+        if (req.body.username == users[i].username && req.body.email == users[i].email){
             customer.valid = true;
-            customer.birthdate = users[i].birthdate;
-            customer.age = users[i].age;
-            customer.email = users[i].email;
+            customer.id = users[i].id;
+            customer.role = users[i].role;
         }
     }
     res.send(customer);
 });
-
-// // start server listening
-// let server = http.listen(3000, function () {
-//     let host = server.address().address;
-//     let port = server.address().port;
-//     console.log("My First Nodejs Server!");
-//     console.log("Server listening on: "+ host + " port: " + port);
-// });

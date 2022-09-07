@@ -9,13 +9,15 @@ import { CommonModule } from '@angular/common';
 import { SocketService } from './services/socket.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

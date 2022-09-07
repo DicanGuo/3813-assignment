@@ -1,1 +1,9 @@
 <h1>Welcome to 3813 Chat System !!</h1>
+
+<ng-template [ngIf]="valid">
+    You are logged in
+    <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
+    <button id="submit" type="button" class="fadeIn fourth" value="Log Out" routerLink="/chat">Chat</button>
+
+</ng-template>
+
