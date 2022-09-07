@@ -13,13 +13,14 @@ module.exports = function(req, res) {
         uArray = JSON.parse(data);
         console.log(groupobj);
         // make some change according to user's post 
-        let i = uArray.findIndex(x => x.groupid == groupobj.groupid);
-        if (i == -1) {
-            uArray.push(groupobj);
-        } else {
-            uArray[i] = groupobj;
-        }
+        // let i = uArray.findIndex(x => x.groupid == groupobj.groupid);
+        // if (i == -1) {
+        //     uArray.push(groupobj);
+        // } else {
+        //     uArray[i] = groupobj;
+        // }
         // send response to user
+        console.log(uArray);
         res.send(uArray);
         // save the file of user list
         let uArrayjson = JSON.stringify(uArray);

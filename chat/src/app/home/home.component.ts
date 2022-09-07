@@ -20,8 +20,8 @@ export class HomeComponent implements OnInit {
   userid = sessionStorage.getItem('userid');
   role = sessionStorage.getItem('role');
   email = sessionStorage.getItem('email');
-  groupsSession = sessionStorage.getItem('groupsSession')!;
-  groups = JSON.parse(this.groupsSession);
+  // groupsSession = sessionStorage.getItem('groupsSession')!;
+  // groups = JSON.parse(this.groupsSession);
 
   constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
 
@@ -49,6 +49,12 @@ export class HomeComponent implements OnInit {
       console.log(data);})
   }
   group(){
+    let user = {role:this.role};
+    this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
+    console.log(data);
+    sessionStorage.setItem('groupsSession', JSON.stringify(data));
+
+  })
     this.router.navigateByUrl('/group');
   }
 
