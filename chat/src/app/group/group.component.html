@@ -1,1 +1,20 @@
 <p>group works!</p>
+<ul>
+    <li *ngFor="let group of groups; let i = index" [attr.data-index]="i">
+        <div>
+            <span>group id: {{group.id}} </span>
+            <button id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
+        </div><br>  
+        <div>
+            <span>group users: {{group.users}} </span>
+            <li *ngFor="let user of group.users; let i = index" [attr.data-index]="i">
+                {{user}}
+            <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+        </div><br>
+        <div>
+            <span>group assis: {{group.assis}}</span>
+            <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+        </div><br>
+        <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button><br> -->
+    </li>
+</ul>

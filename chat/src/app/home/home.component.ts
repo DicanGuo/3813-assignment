@@ -43,13 +43,16 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  group(){
+  test(){
     console.log(this.groupsSession)
 
     console.log(this.groups[0]['id'])
     console.log(this.groups[1]['id'])
     console.log(this.groups[2]['id'])
 
+  }
+  group(){
+    this.router.navigateByUrl('/group');
   }
 
 }

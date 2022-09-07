@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'chat/:id', component: ChatComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'group/:id', component: GroupComponent},
+  {path: 'group', component: GroupComponent},
   {path: 'group/:id/channel/:id', component: ChannelComponent}
 
 ];
