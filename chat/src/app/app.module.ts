@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { GroupComponent } from './group/group.component';
 import { ChannelComponent } from './channel/channel.component';
 import { AddGroupComponent } from './add-group/add-group.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AddGroupComponent } from './add-group/add-group.component';
     HomeComponent,
     GroupComponent,
     ChannelComponent,
-    AddGroupComponent
+    AddGroupComponent,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
