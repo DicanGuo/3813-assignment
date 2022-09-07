@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Route } from '@angular/router';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
+const BACKEND_URL = 'http://localhost:3000';
+// for angular http methods
 
 @Component({
   selector: 'app-home',
@@ -10,8 +17,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class HomeComponent implements OnInit {
   valid = sessionStorage.getItem('valid');
   username = sessionStorage.getItem('username');
-
-  constructor(private route: ActivatedRoute, private router:Router) { }
+  id = sessionStorage.getItem('id');
+  role = sessionStorage.getItem('role');
+  email = sessionStorage.getItem('email');
+  constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +31,12 @@ export class HomeComponent implements OnInit {
   }
   chat(){
     console.log(this.username)
-    this.router.navigateByUrl('/chat/' + this.username);
+    if (this.valid){
+      this.router.navigateByUrl('/chat/' + this.username);
+
+    }else {
+      alert('user not valid')
+    }
 
   }
 

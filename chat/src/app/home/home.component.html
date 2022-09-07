@@ -1,9 +1,39 @@
 <h1>Welcome to 3813 Chat System !!</h1>
+<p>You are {{role}}</p>
+<p> username {{username}}
+</p>
+<p> email {{email}}
+</p>
+<p>id {{id}}</p>
+<p> valid {{valid}}</p>
+<p> </p>
 
-<ng-template [ngIf]="valid">
-    You are logged in
-    <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
-    <button id="submit" type="button" class="fadeIn fourth" value="Log Out" routerLink="/chat">Chat</button>
+<div>
+    <ng-template [ngIf]="valid">
+        <h3>
+            You are logged in
+        </h3>
+        <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
+        <button  (click)="chat()"id="submit" type="button" class="fadeIn fourth" value="Log Out">Chat</button>
+    
+    </ng-template>
+</div>
 
-</ng-template>
+<div>
+    <ng-template [ngIf]="!valid">
+        <h3>Please Log In</h3>
+        <button id="submit" type="button" class="fadeIn fourth" value="Log In" routerLink="/login">login</button>
+    </ng-template>
+</div>
+
+<div>
+    <ng-template [ngIf]="role== 'super'">
+        <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
+        <button id="submit" type="button" class="fadeIn fourth" value="Log In">Group Management</button>
+        <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
+
+    </ng-template>
+
+</div>
+
 

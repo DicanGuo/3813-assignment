@@ -47,14 +47,13 @@ constructor(private router:Router, private httpClient: HttpClient ){}
       // alert(JSON.stringify(this.email));
       if (data.valid) {
         sessionStorage.setItem('username', this.username);
-        sessionStorage.setItem('birthdate', data.birthdate);
-        sessionStorage.setItem('age', data.age);
         sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('id', data.id);
         sessionStorage.setItem('valid', data.valid);
         sessionStorage.setItem('role', data.role);
         console.log('valid user' + sessionStorage);
-        this.router.navigateByUrl('/chat/' + this.username);
-        // this.router.navigateByUrl('/home');
+        // this.router.navigateByUrl('/chat/' + this.username);
+        this.router.navigateByUrl('/home');
 
       } else { alert("username or email incorrect");}
     }

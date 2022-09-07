@@ -4,6 +4,7 @@ import { ChatComponent } from './chat/chat.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'chat/:id', component: ChatComponent},
   {path: 'login', component: LoginComponent}
