@@ -57,7 +57,8 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         //groups
         sessionStorage.setItem('groupsSession', JSON.stringify(data.groupinfo));
         sessionStorage.setItem('userinfo', JSON.stringify(data.userinfo));
-        
+        sessionStorage.setItem('allUser', JSON.stringify(data.allUser));
+
 
         // console.log('valid user' + sessionStorage['groupSession']['groups']);
         // this.router.navigateByUrl('/chat/' + this.username);

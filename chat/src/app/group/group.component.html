@@ -1,20 +1,42 @@
+
+{{allUsers[0].username}}
+<button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button>
+
 <p>group works!</p>
 <ul>
-    <li *ngFor="let group of groups; let i = index" [attr.data-index]="i">
+    <li *ngFor="let group of groups">
         <div>
-            <span>group id: {{group.id}} </span>
-            <button id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
-        </div><br>  
-        <div>
-            <span>group users: {{group.users}} </span>
-            <li *ngFor="let user of group.users; let i = index" [attr.data-index]="i">
-                {{user}}
-            <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
-        </div><br>
-        <div>
-            <span>group assis: {{group.assis}}</span>
-            <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
-        </div><br>
-        <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button><br> -->
+            <div>
+                <span>group id: {{group.id}} </span>
+                <button id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
+            </div><br>
+            <div>
+                <span>group users: </span>
+                <button id="submit" type="button" class="fadeIn fourth" value="channel">Add User</button>
+                <div *ngFor="let userFromList of allUsers">
+    
+                    <div *ngFor="let user of group.users">
+                        <div *ngIf="user == userFromList.id">
+                            {{userFromList.username}}
+                            <button id="submit" type="button" class="fadeIn fourth" value="channel">x</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+            </div><br>
+            <div>
+                <p>Group Assistants: </p>
+                <div *ngFor="let userFromList of allUsers">
+                    <div *ngFor="let user of group.assis">
+                        <div *ngIf="user == userFromList.id">
+                            {{userFromList.username}}
+                        </div>
+                    </div>
+                </div>
+                <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+            </div><br>
+            <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button><br> -->
+        </div>
+        <p>-------------------------------------------</p>
     </li>
 </ul>

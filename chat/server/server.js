@@ -114,6 +114,7 @@ app.post('/api/login', (req,res)=>{
     var data = {};
     var customer = {};
     var groupsSession = {};
+    var allUser = {};
     // var channelSession = {};
 
 
@@ -125,8 +126,8 @@ app.post('/api/login', (req,res)=>{
             customer.valid = true;
             customer.id = users[i].id;
             customer.role = users[i].role;
-            groupsSession = groups
-
+            groupsSession = groups;
+            allUser = users;
             // if super admin retreive all
             if (customer.id == 1){
             }
@@ -146,7 +147,8 @@ app.post('/api/login', (req,res)=>{
     }
     data = {
         userinfo : customer,
-        groupinfo : groupsSession
+        groupinfo : groupsSession,
+        allUser : allUser
     }
     res.send(data);
 
