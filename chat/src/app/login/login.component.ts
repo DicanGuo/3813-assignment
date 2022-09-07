@@ -59,7 +59,7 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('valid', data.valid);
         console.log('valid user' + sessionStorage);
-        this.router.navigateByUrl('/account/' + this.userid);
+        this.router.navigateByUrl('/chat/' + this.userid);
 
       } else { alert("email or password incorrect");}
     }

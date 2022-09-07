@@ -5,11 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
-
-  {path: 'chat', component: ChatComponent},
+  {path: 'chat/:id', component: ChatComponent},
   {path: 'login', component: LoginComponent}
-
-
 ];
 
 @NgModule({
