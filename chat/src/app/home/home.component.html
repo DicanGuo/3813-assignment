@@ -7,6 +7,7 @@
 <p>id {{id}}</p>
 <p> valid {{valid}}</p>
 <p> </p>
+<li class="active"><a class="nav-link">Group</a></li>
 
 <div>
     <ng-template [ngIf]="valid">
@@ -31,9 +32,9 @@
         <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
         <button id="submit" type="button" class="fadeIn fourth" value="Log In">Group Management</button>
         <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
-
     </ng-template>
-
 </div>
+<br>
+<button (click)="group()" id="submit" type="button" class="fadeIn fourth" value="Log In">test</button>
 
 

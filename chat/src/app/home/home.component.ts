@@ -20,9 +20,13 @@ export class HomeComponent implements OnInit {
   id = sessionStorage.getItem('id');
   role = sessionStorage.getItem('role');
   email = sessionStorage.getItem('email');
+  groupsSession = sessionStorage.getItem('groupsSession')!;
+  groups = JSON.parse(this.groupsSession);
+
   constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+
   }
   logout(){
     sessionStorage.clear();
@@ -37,6 +41,14 @@ export class HomeComponent implements OnInit {
     }else {
       alert('user not valid')
     }
+
+  }
+  group(){
+    console.log(this.groupsSession)
+
+    console.log(this.groups[0]['id'])
+    console.log(this.groups[1]['id'])
+    console.log(this.groups[2]['id'])
 
   }
 

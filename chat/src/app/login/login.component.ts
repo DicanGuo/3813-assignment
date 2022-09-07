@@ -33,25 +33,33 @@ constructor(private router:Router, private httpClient: HttpClient ){}
 
     let userLogin = {'username': this.username, 'email': this.email}
     this.httpClient.post(BACKEND_URL + '/api/login', userLogin).subscribe((data: any)=>{
-      console.log(data)
-      console.log('username: ' + data.username)
-      console.log('valid: ' + data.valid)
-      console.log('email: ' + data.email)
-      console.log('id: ' + data.id)
-      console.log('role: ' + data.role)
+      console.log('retured data: ' + data)
+      console.log('retured data: ' + data.userinfo.valid)
+
+      // console.log('username: ' + data.username)
+      // console.log('valid: ' + data.valid)
+      // console.log('email: ' + data.email)
+      // console.log('id: ' + data.id)
+      // console.log('role: ' + data.role)
 
 
 
       // console.log(sessionStorage)
 
       // alert(JSON.stringify(this.email));
-      if (data.valid) {
-        sessionStorage.setItem('username', this.username);
-        sessionStorage.setItem('email', data.email);
-        sessionStorage.setItem('id', data.id);
-        sessionStorage.setItem('valid', data.valid);
-        sessionStorage.setItem('role', data.role);
-        console.log('valid user' + sessionStorage);
+      if (data.userinfo.valid) {
+        //user info
+        sessionStorage.setItem('username', data.userinfo.username);
+        sessionStorage.setItem('email', data.userinfo.email);
+        sessionStorage.setItem('id', data.userinfo.id);
+        sessionStorage.setItem('valid', data.userinfo.valid);
+        sessionStorage.setItem('role', data.userinfo.role);
+        //groups
+        sessionStorage.setItem('groupsSession', JSON.stringify(data.groupinfo));
+        sessionStorage.setItem('userinfo', JSON.stringify(data.userinfo));
+        
+
+        // console.log('valid user' + sessionStorage['groupSession']['groups']);
         // this.router.navigateByUrl('/chat/' + this.username);
         this.router.navigateByUrl('/home');
 
