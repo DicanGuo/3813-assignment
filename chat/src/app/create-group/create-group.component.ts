@@ -26,7 +26,7 @@ export class CreateGroupComponent implements OnInit {
   ngOnInit(): void {
   }
   create(){
-    let newGroup = {'groupid':'', 'groupusers': [this.groupusers], 'groupassis': [this.groupassis], 'groupadmin': [this.groupadmin]}
+    let newGroup = {'groupid':'', 'groupusers': [Number(this.groupusers)], 'groupassis': [Number(this.groupassis)], 'groupadmin': [Number(this.groupadmin)]}
     console.log(newGroup);
     this.httpClient.post(BACKEND_URL + '/creategroup', newGroup,  httpOptions)
       .subscribe((data: any) => {
