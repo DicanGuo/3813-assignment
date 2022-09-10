@@ -28,11 +28,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  logout(){
-    localStorage.clear();
-    console.log(localStorage);
-    this.router.navigateByUrl('/login');
-  }
+
   chat(){
     console.log(this.username)
     if (this.valid){
@@ -51,11 +47,13 @@ export class HomeComponent implements OnInit {
   group(){
     let user = {role:this.role};
     this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
-    console.log(data);
-    localStorage.setItem('groupsSession', JSON.stringify(data));
-
-  })
-    this.router.navigateByUrl('/group');
+      console.log(data);
+      localStorage.setItem('groupsSession', JSON.stringify(data));
+    });
+    // reload page to show data
+    this.router.navigateByUrl('/group').then(()=>{
+      window.location.reload();
+    });
   }
 
 }
