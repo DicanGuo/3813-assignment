@@ -52,7 +52,7 @@ module.exports = function(req, res) {
                     // console.log(k)
                     // console.log(!(k in idlist))
                     if(!(k in idlist)){
-                        groupobj.groupid = k;
+                        groupobj.groupid = Number(k);
                         console.log(groupobj);
                         break
                     }

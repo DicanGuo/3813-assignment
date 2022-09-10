@@ -1,3 +1,4 @@
+const { count } = require('console');
 var fs = require('fs');
 const { stringify } = require('querystring');
 
@@ -49,45 +50,72 @@ module.exports = function(req, res) {
                 }
                 // console.log(gulist)
 
-                let j = groupobj.groupusers.length;
+                let l = groupobj.groupadmin.length;
+                let p = groupobj.groupassis.length;
+
                 // console.log(j);
                 // console.log(groupobj.groupusers[j-1]);
-                let addUser = groupobj.groupusers[j-1];
-                // console.log(addUser);
+                let newadmin = groupobj.groupadmin[l-1];
+                let newassis = groupobj.groupassis[p-1];
+                let countA =0;
+                let countB = 0;
+                // console.log(newadmin);
+                // console.log(groupobj.groupadmin);
+                for(admin in groupobj.groupadmin){
+                    console.log(admin);
+                    if (newadmin == groupobj.groupadmin[admin]){
+                        countA +=1;
+                    }
+                }
+                for(assis in groupobj.groupassis){
+                    if (newassis == groupobj.groupassis[assis]){
+                        countB +=1;
+                    }
+                }
+                console.log(countA, countB);
                 // console.log(uArray);
                 // console.log(gulist);
-                // console.log((addUser));
                 
                 // asign user to group
-                let gadmins = [];
-                let gassis = [];
-                if(groupobj.groupadmin != [] || groupobj.groupassis != []){
-                    gadmins = groupobj.groupadmin;
-                    gassis = groupobj.groupassis;
+                if(countA == 1 && countB == 1){
+                    // gadmins = groupobj.groupadmin;
+                    // gassises= groupobj.groupassis;
                     gArray[i] = groupobj;
                     userData = {gArray};
                     userData['ok']=true;
-                    userData['message']='Assigned User';
+                    userData['message']='Assigned Group Admin & Assistant';
                     // console.log(userData);
+                } else if(countA == 0 && countB == 1){
+                    // gassises= groupobj.groupassis;
+                    groupobj.groupadmin = gArray[i].groupadmin;
+                    gArray[i] = groupobj;
+                    userData = {gArray};
+                    userData['ok']=true;
+                    userData['message']='Assigned Group Assistant';
+                } else if(countA == 1 && countB == 0){
+                    // gassises= groupobj.groupassis;
+                    groupobj.groupassis = gArray[i].groupassis;
+                    gArray[i] = groupobj;
+                    userData = {gArray};
+                    userData['ok']=true;
+                    userData['message']='Assigned Group Admin';
                 } else {
+                    userData = {gArray};
                     userData['ok']=false;
-                    userData['message']='Input is empty';
+                    userData['message']='Input is invalid';
                 }
             } else {
+                userData = {gArray};
                 userData['ok']=false;
                 userData['message']='Failed to add User';
                 // console.log(userData);
                 // res.send(userData);
             }
-
-            // send response to user
-            // res.send(gArray);
-            // save the file of user list
             res.send(userData);                
-            let gArrayjson = JSON.stringify(gArray);
-            fs.writeFile('./data/group.json', gArrayjson, 'utf-8', function(err) {
-                if (err) throw err;
-            });
+            // let gArrayjson = JSON.stringify(gArray);
+            // fs.writeFile('./data/group.json', gArrayjson, 'utf-8', function(err) {
+            //     if (err) throw err;
+            // });
         });
     }
 }

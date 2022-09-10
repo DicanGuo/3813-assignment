@@ -24,6 +24,9 @@ export class GroupComponent implements OnInit {
   extendedUserArray = JSON.parse(this.extendedUserArraySession);
 
   addUser = '';
+  asignAdmin = '';
+  asignAssis = '';
+
   targetGroup = {"groupid": '',"groupusers":'',"groupassis":'',"groupadmin":''};
 
   constructor(private router:Router, private httpClient: HttpClient) { }
@@ -78,6 +81,34 @@ export class GroupComponent implements OnInit {
 
         alert(data.message);
         // window.location.reload();
+      }
+    })
+  }
+
+  assignUser(group:any){
+    let asignAdmin = this.asignAdmin;
+    let asignAssis = this.asignAssis;
+
+    group.groupadmin.push(String(asignAdmin));
+    group.groupassis.push(String(asignAssis));
+
+    // console.log(group.groupusers);
+    console.log(group);
+
+    this.httpClient.post(BACKEND_URL + '/assignUser', group,  httpOptions)
+    .subscribe((data:any)=>{
+      if(data.ok){
+        alert(data.ok);
+
+        alert(data.message);
+        localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
+
+        window.location.reload();
+      }else{
+        alert(data.ok);
+
+        alert(data.message);
+        window.location.reload();
       }
     })
   }
