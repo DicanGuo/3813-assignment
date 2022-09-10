@@ -4,16 +4,20 @@
 <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button>
 
 <li *ngFor="let group of groups">
-    <h2>Group ID:  {{group.groupid}}</h2>
-    <button (click)="delete(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
     <div>
-        <span>group users: </span>
+        <h2>Group ID:  {{group.groupid}}</h2>
+        <button (click)="delete(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
+    </div>
+
+    <div>
         <form>
             <input type="text" name="addUser" [(ngModel)]="addUser">
             <input type="hidden" name="targetGroup" [(ngModel)]="targetGroup">
-            <button  (click)="addUsertoGroup(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Add User</button>
+            <button  (click)="addUsertoGroup(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Add User By ID</button>
 
         </form>
+        <span>group users: </span>
+
         <div *ngFor="let groupuser of group.groupusers">
             <div *ngFor="let user of extendedUserArray">
                 <div *ngIf="user.userid == groupuser">
