@@ -8,6 +8,7 @@ import { ChannelComponent } from './channel/channel.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddGroupComponent } from './add-group/add-group.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'users', component: UserManagementComponent},
   {path: 'add-group', component: AddGroupComponent},
   {path: 'create-user', component: CreateUserComponent},
+  {path: 'create-group', component: CreateGroupComponent},
 
 
 ];
