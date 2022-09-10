@@ -8,7 +8,12 @@
     <button (click)="delete(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
     <div>
         <span>group users: </span>
-        <button id="submit" type="button" class="fadeIn fourth" value="channel">Add User</button>
+        <form>
+            <input type="text" name="addUser" [(ngModel)]="addUser">
+            <input type="hidden" name="targetGroup" [(ngModel)]="targetGroup">
+            <button  (click)="addUsertoGroup(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Add User</button>
+
+        </form>
         <div *ngFor="let groupuser of group.groupusers">
             <div *ngFor="let user of extendedUserArray">
                 <div *ngIf="user.userid == groupuser">

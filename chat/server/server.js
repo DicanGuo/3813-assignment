@@ -96,5 +96,7 @@ app.post('/group', require('./router/group'));
 app.post('/deleteuser', require('./router/deleteUser'));
 app.post('/creategroup', require('./router/createGroup'));
 app.post('/deletegroup', require('./router/deleteGroup'));
+app.post('/updategroup', require('./router/updateGroup'));
+
 
 

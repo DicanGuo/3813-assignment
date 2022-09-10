@@ -23,6 +23,9 @@ export class GroupComponent implements OnInit {
   extendedUserArraySession = localStorage.getItem('extendedUserArray')!;
   extendedUserArray = JSON.parse(this.extendedUserArraySession);
 
+  addUser = '';
+  targetGroup = {"groupid": '',"groupusers":'',"groupassis":'',"groupadmin":''};
+
   constructor(private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
@@ -48,6 +51,34 @@ export class GroupComponent implements OnInit {
           window.location.reload();
       }
       else { alert(data.message);}
+    })
+  }
+
+  addUsertoGroup(group:any){
+    let addUser = this.addUser;
+    // let targetGroup = {"groupid": this.group,"groupusers":this.group,"groupassis":this.targetGroup.groupassis,"groupadmin":this.targetGroup.groupadmin};
+    // console.log(addUser);
+    // console.log(group.groupusers);
+
+    group.groupusers.push(String(addUser));
+    // console.log(group.groupusers);
+    console.log(group);
+
+    this.httpClient.post(BACKEND_URL + '/updategroup', group,  httpOptions)
+    .subscribe((data:any)=>{
+      if(data.ok){
+        alert(data.ok);
+
+        alert(data.message);
+        localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
+
+        // window.location.reload();
+      }else{
+        alert(data.ok);
+
+        alert(data.message);
+        // window.location.reload();
+      }
     })
   }
 }
