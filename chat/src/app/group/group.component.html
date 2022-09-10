@@ -5,7 +5,7 @@
 
 <li *ngFor="let group of groups">
     <h2>Group ID:  {{group.groupid}}</h2>
-    <button id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
+    <button (click)="delete(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
     <div>
         <span>group users: </span>
         <button id="submit" type="button" class="fadeIn fourth" value="channel">Add User</button>
