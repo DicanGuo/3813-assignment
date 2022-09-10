@@ -26,7 +26,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
   create(){
-    let newUser = {'userid':this.userid, 'username': this.username, 'role': this.role, 'email': this.email}
+    let newUser = {'userid':'', 'username': this.username, 'role': 'user', 'email': this.email}
     console.log(newUser);
     this.httpClient.post(BACKEND_URL + '/loginafter', newUser,  httpOptions)
       .subscribe((data: any) => {
