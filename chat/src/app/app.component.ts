@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'chat';
+  valid = localStorage.getItem('valid');
+  username = localStorage.getItem('username');
+  userid = localStorage.getItem('userid');
+  role = localStorage.getItem('role');
+  email = localStorage.getItem('email');
 }

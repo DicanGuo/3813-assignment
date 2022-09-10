@@ -2,6 +2,11 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li class="active"><a class="nav-link" routerLink="/home">Home</a></li>
+      <ng-template [ngIf]="role== 'super'">
+        <li class="active"><a class="nav-link" routerLink="/home">test</a></li>
+
+      </ng-template>
+
 
       <!-- <li> <a class="nav-link" routerLink="/chat">Chat</a></li> -->
 

@@ -13,6 +13,7 @@ module.exports = function(req, res) {
             // console.log('user Array' + userArray);
             let i = userArray.findIndex(user =>
                 ((user.username == u) && (user.email == p)));
+                // console.log(i);
             if (i == -1) {
                 res.send({
                     "ok": false
