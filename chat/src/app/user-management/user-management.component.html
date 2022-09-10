@@ -1,7 +1,9 @@
 <h1>User Management</h1>
 <div *ngIf="role== 'super'">
     <div *ngFor="let user of userArray">
-        <p>user name: {{user.username}}</p>
+        <p>user name: {{user.username}}
+            <button (click)="delete(user.username)" id="submit" type="button" class="fadeIn fourth" value="Delete">Delete User</button>
+        </p>
         <p>email: {{user.email}}</p>
         <div *ngFor="let extendedUser of extendedUserArray">
             <div *ngIf="extendedUser.username == user.username">
@@ -12,6 +14,6 @@
         
         <p>------------------</p>
     </div>
-    <button  (click)="create()"id="submit" type="button" class="fadeIn fourth" value="Add">Create User</button>
+    <button (click)="create()" id="submit" type="button" class="fadeIn fourth" value="Add">Create User</button>
 
 </div>

@@ -77,17 +77,15 @@ constructor(private router:Router, private httpClient: HttpClient ){}
 
       alert("postRes: " +JSON.stringify(data));
       console.log(data.ok)
-      if (data.ok == false) { alert("email or password incorrect");
-    }
-      else if (data.ok){
-        sessionStorage.setItem('valid', 'true');
+      if (data.ok){
+        // sessionStorage.setItem('valid', 'true');
         sessionStorage.setItem('userid', data.userid.toString());
         sessionStorage.setItem('username', data.username);
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('role', data.role);
         this.router.navigateByUrl("/home");
       } else if (data.userData.ok){
-        sessionStorage.setItem('valid', 'true');
+        // sessionStorage.setItem('valid', 'true');
         sessionStorage.setItem('userid', data.userData.userid.toString());
         sessionStorage.setItem('username', data.userData.username);
         sessionStorage.setItem('email', data.userData.email);
@@ -97,7 +95,8 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         sessionStorage.setItem('extendedUserArray', JSON.stringify(data.extendedUserArray));
 
         this.router.navigateByUrl("/home");
-      } 
+      }
+      else{ alert("email or password incorrect");}
     })
   }
 }
