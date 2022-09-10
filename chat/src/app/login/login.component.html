@@ -14,8 +14,10 @@
 
 <div id="formContent">
   <form>
-      <input type="username" name="username" [(ngModel)]=" username" class="fadeIn second" placeholder="username">
-      <input type="email" name="email" [(ngModel)]=" email" class="fadeIn third" placeholder="email">
+    <label>Username: </label>
+    <input type="username" name="username" [(ngModel)]=" username" class="fadeIn second" placeholder="username">
+    <label>Email: </label>
+    <input type="email" name="email" [(ngModel)]=" email" class="fadeIn third" placeholder="email">
   </form>
   <button (click)="submit()" class="fadeIn fourth"> submit</button>
 </div>

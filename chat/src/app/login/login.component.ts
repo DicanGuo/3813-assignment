@@ -58,7 +58,9 @@ constructor(private router:Router, private httpClient: HttpClient ){}
         localStorage.setItem('userArray', JSON.stringify(data.userArray));
         localStorage.setItem('extendedUserArray', JSON.stringify(data.extendedUserArray));
 
-        this.router.navigateByUrl("/home");
+        this.router.navigateByUrl("/home").then(()=>{
+          window.location.reload();
+        })
       } 
     })
   }

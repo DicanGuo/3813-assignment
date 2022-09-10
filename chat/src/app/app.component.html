@@ -2,11 +2,14 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li class="active"><a class="nav-link" routerLink="/home">Home</a></li>
-      <ng-template [ngIf]="role== 'super'">
-        <li class="active"><a class="nav-link" routerLink="/home">test</a></li>
-
+      <li class="active"><a class="nav-link" routerLink="/home">test</a></li>
+      <ng-template [ngIf]="role == 'super'">
+        hi
       </ng-template>
-      <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
+      <ng-template [ngIf]="valid== 'true'">
+
+        <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
+      </ng-template>
 
 
       <!-- <li> <a class="nav-link" routerLink="/chat">Chat</a></li> -->

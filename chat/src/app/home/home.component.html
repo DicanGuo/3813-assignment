@@ -1,13 +1,15 @@
 <h1>Welcome to 3813 Chat System !!</h1>
-<p>You are {{role}}</p>
-<p> username {{username}}
-</p>
-<p> email {{email}}
-</p>
-<p>userid {{userid}}</p>
-<p> valid {{valid}}</p>
-<p> </p>
-<li class="active"><a class="nav-link">Group</a></li>
+<ng-template [ngIf]="valid== 'false'">
+
+    <p>You are {{role}}</p>
+    <p> username {{username}}
+    </p>
+    <p> email {{email}}
+    </p>
+    <p>userid {{userid}}</p>
+    <p> valid {{valid}}</p>
+    <p> </p>
+</ng-template>
 
 <div>
     <ng-template [ngIf]="valid">
@@ -36,6 +38,6 @@
     </ng-template>
 </div>
 <br>
-<button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="Log In">test</button>
+<!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="Log In">test</button> -->
 
 

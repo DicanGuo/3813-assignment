@@ -22,6 +22,9 @@ export class AppComponent {
   logout(){
     localStorage.clear();
     console.log(localStorage);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home').then(()=>{
+      window.location.reload();
+    })
   }
+  
 }
