@@ -28,6 +28,15 @@ export class CreateUserComponent implements OnInit {
   create(){
     let newUser = {'userid:':this.userid, 'username': this.username, 'role': this.role, 'email': this.email}
     this.httpClient.post(BACKEND_URL + '/loginafter', newUser,  httpOptions)
-      .subscribe((m: any) => {alert(JSON.stringify(m));});
+      .subscribe((data: any) => {
+        alert(JSON.stringify(data));
+        if(data.ok){
+          sessionStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          alert(JSON.stringify(data.message));
+          this.router.navigateByUrl("/users");
+        } else {
+          alert('failed: ' + JSON.stringify(data.message));
+        }
+      });
   }
 }

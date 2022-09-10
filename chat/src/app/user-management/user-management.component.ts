@@ -40,7 +40,7 @@ export class UserManagementComponent implements OnInit {
       // alert("postRes: " +JSON.stringify(data));
 
       if (data.ok){
-          console.log('ok')}
+          console.log('ok')
           sessionStorage.setItem('allUser', JSON.stringify(data.allUser));
 
       //   sessionStorage.setItem('valid', 'true');
@@ -60,8 +60,8 @@ export class UserManagementComponent implements OnInit {
       //   sessionStorage.setItem('extendedUserArray', JSON.stringify(data.extendedUserArray));
 
       //   this.router.navigateByUrl("/home");
-      // }
-      // else { alert("email or password incorrect");}
+      }
+      else { alert("User doesn't exist");}
     })
   }
 

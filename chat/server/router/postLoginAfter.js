@@ -9,72 +9,86 @@ module.exports = function(req, res) {
     }
     let uArray = [];
     let loginArray = [];
-    fs.readFile('./data/extendedUsers.json', 'utf8', function(err, data) {
-        //open the file of user list
-        if (err) throw err;
-        uArray = JSON.parse(data);
-        console.log(userobj);
-        alluArray = uArray;
-        console.log(alluArray)
-        // make some change according to user's post 
-        let i = uArray.findIndex(x => x.username == userobj.username);
-        let idlist = [];
-
-        if (i == -1) {
-            for(j in uArray){
-                idlist.push(j.userid);
-                // console.log(idlist)
-            }
-            for(k=0; k < (idlist.length+2); k++){
-                // console.log(k)
-                if(!(k in idlist)){
-                    userobj.userid = k;
-                    break
+    let userData = {};
+    // console.log('before: '+userData.ok);
+    // find user and write to JSOn if not exist
+    if(userobj.username != '' & userobj.role !='' & userobj.email !=''){
+        fs.readFile('./data/extendedUsers.json', 'utf8', function(err, data) {
+            //open the file of user list
+            if (err) throw err;
+            uArray = JSON.parse(data);
+            // console.log(userobj);
+            // let alluArray = uArray;
+            // console.log(alluArray)
+            // make some change according to user's post 
+            let i = uArray.findIndex(x => x.username == userobj.username);
+            let idlist = [];
+            if (i == -1) {
+                for(j in uArray){
+                    idlist.push(j.userid);
+                    // console.log(idlist)
                 }
+                for(k=0; k < (idlist.length+2); k++){
+                    // console.log(k)
+                    if(!(k in idlist)){
+                        userobj.userid = k;
+                        break
+                    }
+                }
+                uArray.push(userobj);
+                userData = {uArray};
+                userData['ok']=true;
+                userData['message']='User successfully created';
+                console.log(userData);
+       
+                res.send(userData);
+            } else {
+                userData['ok']=false;
+                userData['message']='User already exists';
+
+                res.send(userData);
             }
-            uArray.push(userobj);
 
-        } else {
-            uArray[i] = userobj;
-        }
-        if(userobj.role == 'super'){
-            let usersData = {alluArray, uArray}
-            res.send(usersData);
-        } else {
-            res.send(uArray);
-        }
-        // send response to user
-        // res.send(uArray);
-        // save the file of user list
-        let uArrayjson = JSON.stringify(uArray);
-        fs.writeFile('./data/extendedUsers.json', uArrayjson, 'utf-8', function(err) {
-            if (err) throw err;
+            // send response to user
+            // res.send(uArray);
+            // save the file of user list
+            let uArrayjson = JSON.stringify(uArray);
+            fs.writeFile('./data/extendedUsers.json', uArrayjson, 'utf-8', function(err) {
+                if (err) throw err;
+            });
         });
-    });
-
-    fs.readFile('./data/users.json', 'utf8', function(err, data) {
-        //open the file of user list
-        if (err) throw err;
-        loginArray = JSON.parse(data);
-        console.log(loginArray);
-        // allLoginArray = loginArray;
-        // console.log(allLoginArray)
-        // make some change according to user's post 
-        let i = loginArray.findIndex(x => x.username == userobj.username);
-        let newUser = {username: userobj.username, email: userobj.email};
-
-        if (i == -1) {
-            loginArray.push(newUser);
-        } else {
-            alert('User already exist')
-        }
-
-        // send response to user
-        // res.send(uArray);
-        // save the file of user list
-        let uArrayjson = JSON.stringify(loginArray);
-        fs.writeFile('./data/users.json', uArrayjson, 'utf-8', function(err) {
+        // find user and write to authentication JSON (username & email)
+        fs.readFile('./data/users.json', 'utf8', function(err, data) {
+            //open the file of user list
             if (err) throw err;
+            loginArray = JSON.parse(data);
+            // console.log(loginArray);
+            // allLoginArray = loginArray;
+            // console.log(allLoginArray)
+            // make some change according to user's post 
+            let i = loginArray.findIndex(x => x.username == userobj.username);
+            let newUser = {username: userobj.username, email: userobj.email};
+    
+            if (i == -1) {
+                loginArray.push(newUser);
+            } else {
+                userData['ok']=false;
+            }
+    
+            // send response to user
+            // res.send(uArray);
+            // save the file of user list
+            let uArrayjson = JSON.stringify(loginArray);
+            fs.writeFile('./data/users.json', uArrayjson, 'utf-8', function(err) {
+                if (err) throw err;
+            });
         });
-    });
+    // if input is empty
+    } else {
+        let userData = {'ok':false, 'message':'Input cannot be empty'};
+        // console.log(userData);
+        // console.log(this.userData);
+        res.send(userData);
+    }
+
 }
