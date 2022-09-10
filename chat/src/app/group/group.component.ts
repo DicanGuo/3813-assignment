@@ -13,8 +13,8 @@ export class GroupComponent implements OnInit {
   email = localStorage.getItem('email');
   groupsSession = localStorage.getItem('groupsSession')!;
   groups = JSON.parse(this.groupsSession);
-  // allUsersString = localStorage.getItem('allUser')!;
-  // allUsers = JSON.parse(this.allUsersString);
+  extendedUserArraySession = localStorage.getItem('extendedUserArray')!;
+  extendedUserArray = JSON.parse(this.extendedUserArraySession);
   constructor() { }
 
   ngOnInit(): void {
