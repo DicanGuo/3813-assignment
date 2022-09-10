@@ -15,12 +15,12 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  valid = sessionStorage.getItem('valid');
-  username = sessionStorage.getItem('username');
-  userid = sessionStorage.getItem('userid');
-  role = sessionStorage.getItem('role');
-  email = sessionStorage.getItem('email');
-  // groupsSession = sessionStorage.getItem('groupsSession')!;
+  valid = localStorage.getItem('valid');
+  username = localStorage.getItem('username');
+  userid = localStorage.getItem('userid');
+  role = localStorage.getItem('role');
+  email = localStorage.getItem('email');
+  // groupsSession = localStorage.getItem('groupsSession')!;
   // groups = JSON.parse(this.groupsSession);
 
   constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
 
   }
   logout(){
-    sessionStorage.clear();
-    console.log(sessionStorage);
+    localStorage.clear();
+    console.log(localStorage);
     this.router.navigateByUrl('/login');
   }
   chat(){
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
     let user = {role:this.role};
     this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
     console.log(data);
-    sessionStorage.setItem('groupsSession', JSON.stringify(data));
+    localStorage.setItem('groupsSession', JSON.stringify(data));
 
   })
     this.router.navigateByUrl('/group');

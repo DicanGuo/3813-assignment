@@ -31,7 +31,7 @@ export class CreateUserComponent implements OnInit {
       .subscribe((data: any) => {
         alert(JSON.stringify(data));
         if(data.ok){
-          sessionStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
           alert(JSON.stringify(data.message));
           this.router.navigateByUrl("/users");
         } else {

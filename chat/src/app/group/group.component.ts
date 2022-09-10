@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
-  valid = sessionStorage.getItem('valid');
-  username = sessionStorage.getItem('username');
-  userid = sessionStorage.getItem('userid');
-  role = sessionStorage.getItem('role');
-  email = sessionStorage.getItem('email');
-  groupsSession = sessionStorage.getItem('groupsSession')!;
+  valid = localStorage.getItem('valid');
+  username = localStorage.getItem('username');
+  userid = localStorage.getItem('userid');
+  role = localStorage.getItem('role');
+  email = localStorage.getItem('email');
+  groupsSession = localStorage.getItem('groupsSession')!;
   groups = JSON.parse(this.groupsSession);
-  // allUsersString = sessionStorage.getItem('allUser')!;
+  // allUsersString = localStorage.getItem('allUser')!;
   // allUsers = JSON.parse(this.allUsersString);
   constructor() { }
 

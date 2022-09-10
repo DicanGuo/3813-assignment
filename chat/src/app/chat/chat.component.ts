@@ -9,11 +9,11 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  username = sessionStorage.getItem('username');
-  birthdate = sessionStorage.getItem('birthdate');
-  age = sessionStorage.getItem('age');
-  email = sessionStorage.getItem('email');
-  valid = sessionStorage.getItem('valid');
+  username = localStorage.getItem('username');
+  birthdate = localStorage.getItem('birthdate');
+  age = localStorage.getItem('age');
+  email = localStorage.getItem('email');
+  valid = localStorage.getItem('valid');
 
   messagecontent  : string = '';
   errorMassage: string = '';
