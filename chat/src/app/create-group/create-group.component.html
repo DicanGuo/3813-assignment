@@ -1,1 +1,14 @@
 <p>create-group works!</p>
+
+<h2>New Group</h2>
+<form>
+    <label>Group Users: </label>
+    <input type="text" name="groupusers" [(ngModel)]="groupusers"/>
+    <br>
+    <label>Group Assistant: </label>
+    <input type="text" name="groupassis" [(ngModel)] ="groupassis">
+    <br>
+    <label>Group Admin: </label>
+    <input type="text" name="groupadmin" [(ngModel)] ="groupadmin">
+    <button class="log_but" id="submit" (click)="create()">Create</button>
+</form>

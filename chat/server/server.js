@@ -94,4 +94,6 @@ app.post('/login', require('./router/postLogin'));
 app.post('/loginafter', require('./router/postLoginAfter'));
 app.post('/group', require('./router/group'));
 app.post('/deleteuser', require('./router/deleteUser'));
+app.post('/creategroup', require('./router/createGroup'));
+
 
