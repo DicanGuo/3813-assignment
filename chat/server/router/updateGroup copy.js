@@ -58,42 +58,21 @@ module.exports = function(req, res) {
                 // console.log(gulist);
                 // console.log((addUser));
                 
-                // add user to group
-                if(addUser != 0){
-                    // console.log(gulist);
-                    // console.log((addUser));
-                    // console.log(addUser in gulist);
-                    if(!(addUser in gulist)){
-                    // console.log(uArray);
-                    // console.log((addUser));
-                    // console.log(addUser in (uArray));
-                        if(addUser in uArray){
-                            gArray[i] = groupobj;
-                            userData = {gArray};
-                            userData['ok']=true;
-                            userData['message']='User added to group';
-                            // console.log(userData);
-                            // res.send(userData);
-                        } else {
-                            userData['ok']=false;
-                            userData['message']='no exist';
-                            // console.log(userData);
-                            // res.send(userData);
-                        }
-                    } else {
-                        userData['ok']=false;
-                        userData['message']='user already in group';
-                        // console.log(userData);
-
-                    }
-                }else {
-                    userData['ok']=false;
-                    userData['message']='User is empty';
+                // asign user to group
+                let gadmins = [];
+                let gassis = [];
+                if(groupobj.groupadmin != [] || groupobj.groupassis != []){
+                    gadmins = groupobj.groupadmin;
+                    gassis = groupobj.groupassis;
+                    gArray[i] = groupobj;
+                    userData = {gArray};
+                    userData['ok']=true;
+                    userData['message']='Assigned User';
                     // console.log(userData);
-
-                    // res.send(userData);
+                } else {
+                    userData['ok']=false;
+                    userData['message']='Input is empty';
                 }
-
             } else {
                 userData['ok']=false;
                 userData['message']='Failed to add User';
@@ -105,7 +84,6 @@ module.exports = function(req, res) {
             // res.send(gArray);
             // save the file of user list
             res.send(userData);                
-
             let gArrayjson = JSON.stringify(gArray);
             fs.writeFile('./data/group.json', gArrayjson, 'utf-8', function(err) {
                 if (err) throw err;
