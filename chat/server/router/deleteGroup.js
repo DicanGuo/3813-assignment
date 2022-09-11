@@ -26,7 +26,10 @@ module.exports = function(req, res) {
             // console.log('before: '+ JSON.stringify(gArray));
             // if exist delete user
             if(i > -1){
-                gArray.pop(gArray[i]);
+                // gArray.pop(gArray[i]);
+                if (gArray.find(x => x == gArray[i])) {
+                    gArray.splice(gArray.findIndex(x => x == gArray[i]), 1);
+                 }
                 // console.log('after: '+ JSON.stringify(gArray));
                 userData = {gArray};
                 userData['ok']=true;

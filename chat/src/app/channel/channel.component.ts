@@ -46,4 +46,19 @@ export class ChannelComponent implements OnInit {
     });
 
   }
+  deleteChannel(group:any, channel:any){
+    let postData = {group, channel};
+    console.log(postData)
+    this.httpClient.post(BACKEND_URL + '/deletechannel', postData,  httpOptions).subscribe((data:any)=>{
+      if(data.ok){
+        console.log(data)
+        alert(JSON.stringify(data.message));
+
+        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
+            // reload page to show data
+        this.router.navigateByUrl('/channels')
+        .then(()=>{window.location.reload();});
+          }
+    });
+  }
 }

@@ -52,6 +52,8 @@
         <div *ngFor="let cid of channel.cgid">
             <div *ngIf="group.groupid == cid">
                 <p>Channel ID: {{channel.channelid}}</p>
+                <button id="submit" (click)="deleteChannel(group,channel)" type="button" class="fadeIn fourth" value="channel">Delete Channel</button>
+
                 <p>Channel Members:</p>
                 <div *ngFor="let user of channel.channelusers">
                     {{user}}
