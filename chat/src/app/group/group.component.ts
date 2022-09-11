@@ -70,14 +70,14 @@ export class GroupComponent implements OnInit {
     this.httpClient.post(BACKEND_URL + '/updategroup', group,  httpOptions)
     .subscribe((data:any)=>{
       if(data.ok){
-        alert(data.ok);
+        // alert(data.ok);
 
         alert(data.message);
         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
 
         window.location.reload();
       }else{
-        alert(data.ok);
+        // alert(data.ok);
 
         alert(data.message);
         window.location.reload();
@@ -108,17 +108,17 @@ export class GroupComponent implements OnInit {
     this.httpClient.post(BACKEND_URL + '/assignUser', editGroup,  httpOptions)
     .subscribe((data:any)=>{
       if(data.ok){
-        alert(data.ok);
+        // alert(data.ok);
 
         alert(data.message);
         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
 
-        // window.location.reload();
+        window.location.reload();
       }else{
-        alert(data.ok);
+        // alert(data.ok);
 
         alert(data.message);
-        // window.location.reload();
+        window.location.reload();
       }
     })
   }

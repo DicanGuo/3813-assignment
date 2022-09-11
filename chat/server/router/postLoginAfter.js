@@ -7,6 +7,11 @@ module.exports = function(req, res) {
         "role": req.body.role,
         "email": req.body.email
     }
+    let userobj2 = {
+        "userid": null,
+        "username": req.body.username,
+        "role": req.body.role,
+    }
     let uArray = [];
     let loginArray = [];
     let userData = {};
@@ -21,7 +26,7 @@ module.exports = function(req, res) {
             // let alluArray = uArray;
             // console.log(alluArray)
             // make some change according to user's post 
-            let i = uArray.findIndex(x => x.username == userobj.username);
+            let i = uArray.findIndex(x => x.username == userobj2.username);
             let idlist = [];
             if (i == -1) {
                 for(j in uArray){
@@ -31,11 +36,11 @@ module.exports = function(req, res) {
                 for(k=0; k < (idlist.length+2); k++){
                     // console.log(k)
                     if(!(k in idlist)){
-                        userobj.userid = k;
+                        userobj2.userid = k;
                         break
                     }
                 }
-                uArray.push(userobj);
+                uArray.push(userobj2);
                 userData = {uArray};
                 userData['ok']=true;
                 userData['message']='User successfully created';
