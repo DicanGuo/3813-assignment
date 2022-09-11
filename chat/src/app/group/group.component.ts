@@ -75,12 +75,12 @@ export class GroupComponent implements OnInit {
         alert(data.message);
         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
 
-        // window.location.reload();
+        window.location.reload();
       }else{
         alert(data.ok);
 
         alert(data.message);
-        // window.location.reload();
+        window.location.reload();
       }
     })
   }
