@@ -3,7 +3,7 @@
 
 <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button>
 
-<li *ngFor="let group of groups">
+<div *ngFor="let group of groups">
     <div>
         <h2>Group ID:  {{group.groupid}}</h2>
         <button (click)="delete(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Delete Group</button>
@@ -62,4 +62,4 @@
     </div><br>
     <p>--------------------------------</p>
 
-</li>
+</div>

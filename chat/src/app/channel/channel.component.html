@@ -1,1 +1,52 @@
-<p>channel works!</p>
+<h1>Channel List</h1>
+<div *ngFor="let group of groups">
+    <div>
+        <h2>Group ID:  {{group.groupid}}</h2>
+        <button id="submit" type="button" class="fadeIn fourth" value="channel">Create Channel</button>
+    </div>
+
+    <div>
+        <form>
+            <!-- <input type="text" name="addUser" [(ngModel)]="addUser">
+            <input type="hidden" name="targetGroup" [(ngModel)]="targetGroup"> -->
+
+        </form>
+        <span>group users: </span>
+        <div *ngFor="let groupuser of group.groupusers">
+            <div *ngFor="let user of extendedUserArray">
+                <div *ngIf="user.userid == groupuser">
+                    {{user.username}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>Group Assistants: </p>
+        <p>ID:</p>
+            <div *ngFor="let groupassis of group.groupassis">
+                <div *ngFor="let user of extendedUserArray">
+                    <div *ngIf="user.userid == groupassis">
+                        {{user.username}}
+                    </div>
+                </div>
+            </div>
+        <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+    </div><br>
+    <div>
+        <p>Group Admin: </p>
+        <p>ID:</p>
+            <div *ngFor="let groupadmin of group.groupadmin">
+                <div *ngFor="let user of extendedUserArray">
+                    <div *ngIf="user.userid == groupadmin">
+                        {{user.username}}
+                    </div>
+                </div>
+            </div>
+        <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
+    </div><br>
+    <div>
+        <h3>Channels of this group: </h3>
+    </div>
+    <p>--------------------------------</p>
+
+</div>

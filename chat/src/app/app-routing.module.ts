@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: 'add-group', component: AddGroupComponent},
   {path: 'create-user', component: CreateUserComponent},
   {path: 'create-group', component: CreateGroupComponent},
+  {path: 'channels', component: ChannelComponent},
 
 
 ];
