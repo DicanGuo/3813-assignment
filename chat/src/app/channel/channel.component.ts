@@ -27,6 +27,7 @@ export class ChannelComponent implements OnInit {
   channels = JSON.parse(this.channelSession);
   addUser = '';
   targetGroup = [];
+  deleteUser = '';
   constructor(private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
@@ -77,5 +78,34 @@ export class ChannelComponent implements OnInit {
 
       }
     });
+  }
+
+  removeFromChannel(user:any, channel:any){
+    let deleteUser = user;
+    let postData = {deleteUser, channel};
+    console.log('posting: '+JSON.stringify(postData))
+    this.httpClient.post(BACKEND_URL + '/removeFromChannel', postData,  httpOptions).subscribe((data:any)=>{
+      if(data.ok){
+        console.log('return: '+ data);
+        // alert(JSON.stringify(data.message));
+        // localStorage.setItem('channelSession', JSON.stringify(data.cArray));
+        window.location.reload();
+      } else {
+        alert(JSON.stringify(data.message))
+        // window.location.reload();
+
+      }
+    });
+  }
+
+  chat(){
+    console.log(this.username)
+    if (this.valid){
+      this.router.navigateByUrl('/chat/' + this.username);
+
+    }else {
+      alert('user not valid')
+    }
+
   }
 }

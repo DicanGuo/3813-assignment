@@ -6,11 +6,6 @@
     </div>
 
     <div>
-        <form>
-            <!-- <input type="text" name="addUser" [(ngModel)]="addUser">
-            <input type="hidden" name="targetGroup" [(ngModel)]="targetGroup"> -->
-
-        </form>
         <span>group users: </span>
         <div *ngFor="let groupuser of group.groupusers">
             <div *ngFor="let user of extendedUserArray">
@@ -53,15 +48,19 @@
             <div *ngIf="group.groupid == cid">
                 <p>Channel ID: {{channel.channelid}}</p>
                 <button id="submit" (click)="deleteChannel(group,channel)" type="button" class="fadeIn fourth" value="channel">Delete Channel</button>
+                <button  (click)="chat()"id="submit" type="button" class="fadeIn fourth" value="Chat">Chat</button>
 
                 <p>Channel Members:</p>
-                <form>
+                <form id="1">
                     <input type="text" [(ngModel)]="addUser" name="addUser">
-                    <button id="submit" (click)="updateChannel(channel)" type="button" class="fadeIn fourth" value="channel">Add User to Channel</button>
+                    <button id="submit" (click)="updateChannel(channel)" name="addUser" type="button" class="fadeIn fourth" value="channel">Add User to Channel</button>
                 </form>
 
                 <div *ngFor="let user of channel.channelusers">
-                    {{user}}
+                    <form id="2">
+                        <label>{{user}}</label>
+                        <button id="removeFromChannel" type="button" name="removeUser" (click)="removeFromChannel(user, channel)"  class="fadeIn fourth" value="channel">X</button>
+                    </form>
                 </div>
             </div>
         </div>

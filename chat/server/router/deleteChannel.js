@@ -37,6 +37,7 @@ module.exports = function(req, res) {
                 if (cArray.find(x => x == cArray[i])) {
                     cArray.splice(cArray.findIndex(x => x == cArray[i]), 1);
                  }
+                 console.log(cArray)
                 // cArray.pop(cArray[i]);
                 // console.log('after: '+ JSON.stringify(cArray[i]));
                 userData = {cArray};

@@ -42,6 +42,7 @@ app.post('/channel', require('./router/channel'));
 app.post('/createchannel', require('./router/createChannel'));
 app.post('/updatechannel', require('./router/updateChannel'));
 app.post('/deletechannel', require('./router/deleteChannel'));
+app.post('/removeFromChannel', require('./router/removeFromChannel'));
 
 
 
