@@ -60,3 +60,6 @@ Multiple routers are created to seperate the functions and data transmitted. Ide
 
 ## Angular Architecture
 <!-- Describe your Angular architecture in terms of components, services, and models. -->
+### Components
+#### sth
+
