@@ -25,7 +25,7 @@ export class ChannelComponent implements OnInit {
 
   channelSession = localStorage.getItem('channelSession')!;
   channels = JSON.parse(this.channelSession);
-
+  addUser = '';
   targetGroup = [];
   constructor(private router:Router, private httpClient: HttpClient) { }
 
@@ -59,6 +59,23 @@ export class ChannelComponent implements OnInit {
         this.router.navigateByUrl('/channels')
         .then(()=>{window.location.reload();});
           }
+    });
+  }
+  updateChannel(channel:any){
+    let addUser = this.addUser;
+    let postData = {addUser, channel};
+    console.log('posting: '+JSON.stringify(postData))
+    this.httpClient.post(BACKEND_URL + '/updatechannel', postData,  httpOptions).subscribe((data:any)=>{
+      if(data.ok){
+        console.log('return: '+ data);
+        alert(JSON.stringify(data.message));
+        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
+        window.location.reload();
+      } else {
+        alert(JSON.stringify(data.message))
+        window.location.reload();
+
+      }
     });
   }
 }

@@ -55,6 +55,11 @@
                 <button id="submit" (click)="deleteChannel(group,channel)" type="button" class="fadeIn fourth" value="channel">Delete Channel</button>
 
                 <p>Channel Members:</p>
+                <form>
+                    <input type="text" [(ngModel)]="addUser" name="addUser">
+                    <button id="submit" (click)="updateChannel(channel)" type="button" class="fadeIn fourth" value="channel">Add User to Channel</button>
+                </form>
+
                 <div *ngFor="let user of channel.channelusers">
                     {{user}}
                 </div>
