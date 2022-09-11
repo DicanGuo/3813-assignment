@@ -8,10 +8,10 @@
       <ng-template [ngIf]="role == 'super'">
         <li class="active"><a class="nav-link" routerLink="/users">User Management</a></li>
         <li class="active"><a class="nav-link" (click)="group()" routerLink="/group">Group Management</a></li>
-        <li class="active"><a class="nav-link" (click)="channel()" routerLink="/channels">Channel Management</a></li>      
       </ng-template>
-      <ng-template [ngIf]="valid== 'true'">
+      <li class="active"><a class="nav-link" (click)="channel()" routerLink="/channels">Channel Management</a></li>      
 
+      <ng-template [ngIf]="valid== 'true'">
         <button (click)="logout()" id="submit" type="button" class="fadeIn fourth" value="Log Out">Logout</button>
       </ng-template>
 
