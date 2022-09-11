@@ -42,6 +42,18 @@ Channels have entities of 'channelid', 'cgid', and 'channelusers'.
 <!-- The Angular front end should communicate with the Node.js server using a REST API. Describe each route provided, parameters, return values, and what it does. -->
 The server is placed under the chat app folder for convenience. The main interaction used for communication between front end and back end is the HttpRequests. Since the project is local project, here the server is using and listening to the port 3000. The Angular app instead is hosting on port 4200.
 ### router
+Multiple routers are created to seperate the functions and data transmitted. Ideally it can reduce the traffic to increase the speed of data transmission. Certain data is required and sent back to front. The requirement of data is different from route to route.
+1. assignUser route is used for admins to assigning a user a role. A group object and user id is sent to server. JSON files are read and data are compared for input validation. If successful, a user's role will be changed and written to JSON file. His name will be saved to group details under groupadmin or groupassis list.
+2. channel route is used to fetch channel details from JSON file.
+3. createChannel route is used for creating a channel. A group object is required and sent from front end. If the group is valid, the system will generate a new channel with a unique channel ID. 
+4. createGroup route is for creating group. In front end, there is a form implemented requiring user input a user, an admin, and an assistant for the group. The data is sent and fetched by server. After validation, the data will be written to JSON file.
+5. deleteChannel is used for deleting a channel. A group object and channel object are required and sent from front end. The system will validate the group details and channel details. If valid, the channel will be deleted.
+6. deleteGroup route is used for deleting a group. A group object is sent from front end and validated at server side. If success, the group will be deleted.
+7. deleteUser route is used for deleting a user. A user object is sent from front end and validated at back end. If success, the user will be deleted.
+8. group route is used for fetching all group details and sent back to front end.
+9. postLogin route is used for log in validation. Username and email will be sent to server and validated. If success will sent back to front end a valid value.
+10. postLoginAfter route is used for creating a user. The input username and email will be validated and written to users.json file and extendedUsers.json files.
+
 
 ## Angular Architecture
 <!-- Describe your Angular architecture in terms of components, services, and models. -->
