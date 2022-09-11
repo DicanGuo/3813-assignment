@@ -2,7 +2,7 @@
 <div *ngFor="let group of groups">
     <div>
         <h2>Group ID:  {{group.groupid}}</h2>
-        <button id="submit" type="button" class="fadeIn fourth" value="channel">Create Channel</button>
+        <button id="submit" (click)="createChannel(group)" type="button" class="fadeIn fourth" value="channel">Create Channel</button>
     </div>
 
     <div>
@@ -46,6 +46,19 @@
     </div><br>
     <div>
         <h3>Channels of this group: </h3>
+    </div>
+    <div *ngFor="let channel of channels">
+
+        <div *ngFor="let cid of channel.cgid">
+            <div *ngIf="group.groupid == cid">
+                <p>Channel ID: {{channel.channelid}}</p>
+                <p>Channel Members:</p>
+                <div *ngFor="let user of channel.channelusers">
+                    {{user}}
+                </div>
+            </div>
+        </div>
+
     </div>
     <p>--------------------------------</p>
 

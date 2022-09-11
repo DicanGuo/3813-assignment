@@ -46,14 +46,22 @@ export class AppComponent {
 
   channel(){
     let user = {role:this.role};
+    this.httpClient.post(BACKEND_URL + '/channel', user,  httpOptions).subscribe((data:any)=>{
+      console.log(data);
+      localStorage.setItem('channelSession', JSON.stringify(data));
+    });
+    // reload page to show data
+    // .then(()=>{window.location.reload();});
     this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
       console.log(data);
       localStorage.setItem('groupsSession', JSON.stringify(data));
     });
-    // reload page to show data
-    this.router.navigateByUrl('/group').then(()=>{
+
+    this.router.navigateByUrl('/channels').then(()=>{
       window.location.reload();
     });
+
   }
+
   
 }

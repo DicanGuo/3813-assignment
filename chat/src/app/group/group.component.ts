@@ -88,14 +88,24 @@ export class GroupComponent implements OnInit {
   assignUser(group:any){
     let asignAdmin = this.asignAdmin;
     let asignAssis = this.asignAssis;
+    console.log(asignAdmin)
+    console.log(asignAssis)
 
-    group.groupadmin.push(String(asignAdmin));
-    group.groupassis.push(String(asignAssis));
+    let editGroup = group;
+    console.log(editGroup);
+    console.log(editGroup.groupadmin.push(String(asignAdmin)));
+
+    // if(!(asignAdmin='')){
+    //   editGroup.groupadmin.push(JSON.stringify(asignAdmin));
+    // }
+    // if(!(asignAssis='')){
+    //   editGroup.groupassis.push(JSON.stringify(asignAssis));
+    // }
 
     // console.log(group.groupusers);
-    console.log(group);
+    // console.log(editGroup);
 
-    this.httpClient.post(BACKEND_URL + '/assignUser', group,  httpOptions)
+    this.httpClient.post(BACKEND_URL + '/assignUser', editGroup,  httpOptions)
     .subscribe((data:any)=>{
       if(data.ok){
         alert(data.ok);
@@ -103,12 +113,12 @@ export class GroupComponent implements OnInit {
         alert(data.message);
         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
 
-        window.location.reload();
+        // window.location.reload();
       }else{
         alert(data.ok);
 
         alert(data.message);
-        window.location.reload();
+        // window.location.reload();
       }
     })
   }

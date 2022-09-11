@@ -14,10 +14,8 @@ module.exports = function(req, res) {
 
     fs.readFile('./data/extendedUsers.json', 'utf8', function(err, data) {
         if (err) throw err;
-
         users = JSON.parse(data);
         // console.log(users);
-
         for (i in users){
             // console.log(i);
             uArray.push(users[i].username);
