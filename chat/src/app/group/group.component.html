@@ -29,34 +29,21 @@
             <button  (click)="assignUser(group)" id="submit" type="button" class="fadeIn fourth" value="channel">Asign Group Assis By ID</button>
         </form>
         <div *ngFor="let groupuser of group.groupusers">
-            <div *ngFor="let user of extendedUserArray">
-                <div *ngIf="user.userid == groupuser">
-                    {{user.username}}
-                </div>
-            </div>
+            {{groupuser}}
         </div>
     </div>
     <div>
         <p>Group Assistants: </p>
-        <p>ID:</p>
             <div *ngFor="let groupassis of group.groupassis">
-                <div *ngFor="let user of extendedUserArray">
-                    <div *ngIf="user.userid == groupassis">
-                        {{user.username}}
-                    </div>
-                </div>
+                {{groupassis}}
+
             </div>
         <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
     </div><br>
     <div>
         <p>Group Admin: </p>
-        <p>ID:</p>
             <div *ngFor="let groupadmin of group.groupadmin">
-                <div *ngFor="let user of extendedUserArray">
-                    <div *ngIf="user.userid == groupadmin">
-                        {{user.username}}
-                    </div>
-                </div>
+                {{groupadmin}}
             </div>
         <!-- <button id="submit" type="button" class="fadeIn fourth" value="channel">Go to channels</button> -->
     </div><br>

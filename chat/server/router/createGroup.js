@@ -9,7 +9,7 @@ module.exports = function(req, res) {
     }
     let gArray = {};
     let users = {};
-    let uArray = {};
+    let uArray = [];
     let userData = {};
 
     fs.readFile('./data/extendedUsers.json', 'utf8', function(err, data) {
@@ -20,7 +20,7 @@ module.exports = function(req, res) {
 
         for (i in users){
             // console.log(i);
-            uArray[users[i].username]=true;
+            uArray.push(users[i].username);
         }
     });
 
@@ -29,11 +29,29 @@ module.exports = function(req, res) {
         //open the file of user list
         if (err) throw err;
         gArray = JSON.parse(data);
-        // console.log(groupobj);
+        // console.log('test'+gArray);
         if (groupobj.groupusers[0] != '' & groupobj.groupadmin[0] != '' & groupobj.groupassis[0] != '') {
-            // console.log(groupobj.groupusers[0] in uArray);
+            console.log(groupobj.groupusers);
+            console.log(groupobj.groupusers[0]);
 
-            if (!(groupobj.groupusers[0] in uArray) || !(groupobj.groupadmin[0] in uArray) || !(groupobj.groupassis[0] in uArray)){
+            console.log(groupobj.groupusers[0] in uArray);
+            let countA = 0;
+            let countB = 0;
+            let countC = 0;
+
+            for(i in uArray){
+                if(groupobj.groupusers[0] == uArray[i]){
+                    countA += 1;
+                }
+                if(groupobj.groupadmin[0] == uArray[i]){
+                    countB += 1;
+                }
+                if(groupobj.groupassis[0] == uArray[i]){
+                    countC += 1;
+                }
+            }
+            console.log(countA, countB, countC);
+            if (!(countA == 1) || !(countA == 1)  || !(countC == 1) ){
                 // console.log(gArray.ok);
                 // console.log(gArray.message);
                 // console.log(gArray);
