@@ -61,5 +61,35 @@ Multiple routers are created to seperate the functions and data transmitted. Ide
 ## Angular Architecture
 <!-- Describe your Angular architecture in terms of components, services, and models. -->
 ### Components
-#### sth
+#### app
+app component is used as basic component with global navigation bar. Navigation links are restricted to roles. Only user with permission can see User Management page and Group Management page.
+By default, user will be asked to login and redirect to log in page.
+
+#### channel
+channel component displays all the channels that is visible to user. For normal users, only Group information and channel ID, members name displayed. There is also a button for going into each channel for chatting with channel members. For admins, there are buttons for creating a chennel, deleting a channel, add or remove users from channels. 
+#### chat
+chat component displays the chat room that allows channel members to chat with texts. (In phase 2 user icon and video chat will be implemented.)
+#### create-group
+create-group component displays a form for admins to create a group. A group user, a group assistant, and a group admin is required. For more users, admins can add users in group page. When creation is successful, user will be redirected back to group list page.
+
+#### create-user
+create-user component provides a form for admins to create a new user with usrename and email.
+
+#### group
+group component provides a list of all visible groups. Admins can create or delete groups, add or remove users from groups, and assign users to group as group admin or group assistant. While admin functions are hidden to the normal users.
+
+#### home
+home page displays user profile after login. Before login, it displays a login button with text info asking user to login.
+
+#### login
+login page is simply a form allows user to input username and email to login.
+
+#### user-management
+user-management admins have permission to go to user management page. In this page all user info are listed, and admins can create or delet a user here.
+
+### Services
+#### Sockets
+Sockets are used to retreive data from and send data to server reactively. It allows users to live communicate inside the channels.
+When user send a text input, the socket service send it to the server and retreive data sent from other users.
+
 
