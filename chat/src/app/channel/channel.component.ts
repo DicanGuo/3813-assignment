@@ -32,13 +32,18 @@ export class ChannelComponent implements OnInit {
   ngOnInit(): void {
   }
   createChannel(group:any){
-    let user = {role:this.role};
-    this.httpClient.post(BACKEND_URL + '/channel', user,  httpOptions).subscribe((data:any)=>{
+    // let user = {role:this.role};
+    this.httpClient.post(BACKEND_URL + '/createchannel', group,  httpOptions).subscribe((data:any)=>{
       console.log(data);
-      localStorage.setItem('channelSession', JSON.stringify(data));
+      if(data.ok){
+        alert(JSON.stringify(data.message));
+
+        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
+            // reload page to show data
+        this.router.navigateByUrl('/channels')
+        .then(()=>{window.location.reload();});
+          }
     });
-    // reload page to show data
-    this.router.navigateByUrl('/channels')
-    // .then(()=>{window.location.reload();});
+
   }
 }
