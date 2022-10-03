@@ -7,34 +7,33 @@
     <p> valid {{valid}}</p>
     <p> </p>
 </ng-template>
-
-<div>
-    <ng-template [ngIf]="valid">
-        <h3>
-            You are logged in
-        </h3>
-        <button  (click)="chat()"id="submit" type="button" class="fadeIn fourth" value="Log Out">Chat</button>
+<ul class="nav nav-pill" role="tablist">
+    <div>
+        <ng-template [ngIf]="valid">
+            <h3>
+                You are logged in
+            </h3>
+            <div>
+                <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
+                <ng-template [ngIf]="role== 'super'">
+                    <button id="submit" type="button" class="btn btn-info" value="Log In" routerLink="/users">User Management</button>
+                    <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
+            
+                    <button (click)="group()" id="submit" type="button" class="btn btn-info" value="Log In">Group Management</button>
+            
+                </ng-template>
+            </div>
+        </ng-template>
+    </div>
     
-    </ng-template>
-</div>
+    <div>
+        <ng-template [ngIf]="!valid">
+            <h3>Please Log In</h3>
+            <button id="submit" type="button" class="btn btn-primary" value="Log In" routerLink="/login">login</button>
+        </ng-template>
+    </div>
+    
 
-<div>
-    <ng-template [ngIf]="!valid">
-        <h3>Please Log In</h3>
-        <button id="submit" type="button" class="fadeIn fourth" value="Log In" routerLink="/login">login</button>
-    </ng-template>
-</div>
-
-<div>
-    <ng-template [ngIf]="role== 'super'">
-        <button id="submit" type="button" class="fadeIn fourth" value="Log In" routerLink="/users">User Management</button>
-        <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
-
-        <button (click)="group()" id="submit" type="button" class="fadeIn fourth" value="Log In">Group Management</button>
-
-    </ng-template>
-</div>
-<br>
-<!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="Log In">test</button> -->
-
-
+    <br>
+    <!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="Log In">test</button> -->    
+</ul>
