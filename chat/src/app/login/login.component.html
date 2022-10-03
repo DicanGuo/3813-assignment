@@ -11,13 +11,18 @@
 </div> -->
 
   <!-- JSON login -->
-
+<br>
 <div id="formContent">
   <form>
-    <label>Username: </label>
-    <input type="username" name="username" [(ngModel)]=" username" class="fadeIn second" placeholder="username">
-    <label>Email: </label>
-    <input type="email" name="email" [(ngModel)]=" email" class="fadeIn third" placeholder="email">
-  </form>
-  <button (click)="submit()" class="btn btn-info"> submit</button>
+    <div>
+      <label>Username: </label>
+      <input type="username" name="username" [(ngModel)]=" username" class="fadeIn second" placeholder="username">
+    </div><br>
+    <div>
+      <label>Password: </label>
+      <input type="password" name="email" [(ngModel)]=" email" class="fadeIn third" placeholder="email">
+    </div>
+
+  </form><br>
+  <button (click)="submit()" class="btn btn-primary"> submit</button>
 </div>

@@ -1,17 +1,38 @@
 <h1>User Management</h1>
 
 <div *ngIf="role== 'super'">
-    <div *ngFor="let user of extendedUserArray">
-        <form>
-            <p>user name: {{user.username}}
-                <button (click)="delete(user)" id="submit" type="button" class="fadeIn fourth" value="Delete">Delete User</button>
-            </p>
-            <p>email: {{user.email}}</p>
-            <p>user ID: {{user.userid}}</p>
-            <p>user role: {{user.role}}</p>
-        </form>
-        <p>------------------</p>
-    </div>
-    <button (click)="create()" id="submit" type="button" class="fadeIn fourth" value="Add">Create User</button>
+    
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                    <th>
+                        <button (click)="create()" id="submit" type="button" class="btn btn-success" value="Add">Create</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of extendedUserArray">
+                    <td>{{user.userid}}</td>
+                    <td>{{user.username}}
+                    </td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                        <form>
+
+                        <button (click)="delete(user)" id="submit" type="button" class="btn btn-danger" value="Delete">X</button>
+                    </form>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
 
 </div>

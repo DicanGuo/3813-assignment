@@ -1,9 +1,14 @@
-<p>create-user works!</p>
+<h2>Create User</h2>
 <form>
-    Username: <br>
-    <input type="text" [(ngModel)]="username" name="username">   <br>
-    
-    Email:<br>
-    <input type="text" [(ngModel)]="email" name="email"> <br>    
-    <button class="log_but" id="submit"(click)="create()">Create</button>
+    <div>
+        Username: <br>
+        <input type="text" [(ngModel)]="username" name="username">   <br>
+    </div>
+
+    <div>
+        Password:<br>
+        <input type="password" [(ngModel)]="email" name="email"> <br>  
+    </div>
+    <br>
+    <button class="btn btn-success" id="submit"(click)="create()">Create</button>
 </form>

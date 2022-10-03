@@ -1,32 +1,35 @@
 <h1>Welcome to 3813 Chat System !!</h1>
-<ng-template [ngIf]="valid== 'true'">
 
-    <p>You are {{role}}</p>
-    <p> username {{username}}</p>
-    <p>userid {{userid}}</p>
-    <p> valid {{valid}}</p>
-    <p> </p>
-</ng-template>
 <ul class="nav nav-pill" role="tablist">
     <div>
         <ng-template [ngIf]="valid">
-            <h3>
-                You are logged in
-            </h3>
-            <div>
-                <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
-                <ng-template [ngIf]="role== 'super'">
-                    <button id="submit" type="button" class="btn btn-info" value="Log In" routerLink="/users">User Management</button>
+            <div class="bd-example">
+
+                <ng-template [ngIf]="role== 'super'" class="d-flex justify-content-around">
+                    <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
+
+                    <button id="submit" type="button" class="btn btn-primary" value="Log In" routerLink="/users">User Management</button>
                     <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
             
-                    <button (click)="group()" id="submit" type="button" class="btn btn-info" value="Log In">Group Management</button>
+                    <button (click)="group()" id="submit" type="button" class="btn btn-primary" value="Log In">Group Management</button>
             
                 </ng-template>
-            </div>
+            </div><br>
+            <ng-template [ngIf]="valid== 'true'">
+                <h3>
+                    You are logged in as
+                </h3>
+                <p>Role: {{role}}</p>
+                <p>Username {{username}}</p>
+                <p>Userid {{userid}}</p>
+                <p> valid {{valid}}</p>
+                <p> </p>
+            </ng-template>
         </ng-template>
     </div>
     
     <div>
+        <br>
         <ng-template [ngIf]="!valid">
             <h3>Please Log In</h3>
             <button id="submit" type="button" class="btn btn-primary" value="Log In" routerLink="/login">login</button>
