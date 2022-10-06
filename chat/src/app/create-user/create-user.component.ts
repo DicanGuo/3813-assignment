@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit {
   email = '';
   userid = null;
   role ='';
+  password='';
   // newUser = {username: '', email: ''}
 
   constructor(private router:Router, private httpClient: HttpClient ) { 
@@ -26,11 +27,12 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
   create(){
-    let newUser = {'userid':'', 'username': this.username, 'role': 'user', 'email': this.email}
-    console.log(newUser);
-    this.httpClient.post(BACKEND_URL + '/loginafter', newUser,  httpOptions)
+    let newUser = {'id':'', 'name': this.username, 'password':this.password, 'role': 'user', 'email': ''}
+    // console.log(newUser);
+    this.httpClient.post(BACKEND_URL + '/api/createUser', newUser,  httpOptions)
       .subscribe((data: any) => {
         alert(JSON.stringify(data));
+        console.log(data)
         if(data.ok){
           localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
           alert(JSON.stringify(data.message));
@@ -39,5 +41,8 @@ export class CreateUserComponent implements OnInit {
           alert('failed: ' + JSON.stringify(data.message));
         }
       });
-  }
+      // this.router.navigateByUrl("/users").then(()=>{
+      //   window.location.reload();
+      // })
+  };
 }

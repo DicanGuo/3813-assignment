@@ -44,6 +44,20 @@ app.post('/updatechannel', require('./router/updateChannel'));
 app.post('/deletechannel', require('./router/deleteChannel'));
 app.post('/removeFromChannel', require('./router/removeFromChannel'));
 
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017';
+MongoClient.connect(url, function(err,client){
+    if(err){return console.log(err)}
+    const dbName = '3813';
+    const db =client.db(dbName);
+    require('./routes/auth.js')(app, db);
+    require('./routes/createUser.js')(app, db);
+    // require('./routes/getchats.js')(app, db);
+    // require('./routes/socket.js')(app, io, db);
+    require('./listen.js');
+
+})
+
 
 
 
