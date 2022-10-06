@@ -1,17 +1,27 @@
 module.exports = function(app, db){
     app.post('/api/auth', (req, res)=>{
         const assert = require('assert');
-        var uname = req.body.username;
+        var name = req.body.name;
         var pwd = req.body.password;
         const collection = db.collection('credentials');
-        collection.find({'name':uname, 'password':pwd}).count(function (err,count){
-            assert.equal(null, err);
-
-            if (count>0){
-                res.send({'username':uname, 'sucess':true});
+        collection.find({'name':name, 'password':pwd}).toArray((err,data)=>{
+            // console.log(data)
+            if (data.length>0){
+                // var send = [data, {'valid':true}]
+                user = data;
+                sendData={user};
+                sendData['valid']=true
+                // console.log(send)
+                res.send(sendData);
+                
             }else{
-                res.send({'username':'','success':false});
+                sendData={};
+                sendData['valid']=false;
+                sendData['message']='User name or password is invalid !';
+
+                // data=[{'valid':false}, {'message':'User name or password is invalid !'}];
+
+                res.send(sendData);
             }
-        });
-    });
-};
+        });       
+})};

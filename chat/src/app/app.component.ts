@@ -19,11 +19,32 @@ export class AppComponent {
   constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
 
   title = 'chat';
-  valid = localStorage.getItem('valid');
-  username = localStorage.getItem('username');
-  userid = localStorage.getItem('userid');
-  role = localStorage.getItem('role');
-  email = localStorage.getItem('email');
+  // valid = localStorage.getItem('valid');
+  // username = localStorage.getItem('username');
+  // userid = localStorage.getItem('userid');
+  // role = localStorage.getItem('role');
+  // email = localStorage.getItem('email');
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid : boolean = false;
+  userid = '';
+  username = '';
+  role = '';
+  email = '';
+  ngOnInit(): void {
+    // console.log(this.currentUser!.valid)
+    // console.log(this.valid)
+    try {this.init()}
+    catch{}
+  }
+
+  init(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.valid = this.currentUser.valid;
+    this.userid = this.currentUser.id;
+    this.username = this.currentUser.name;
+    this.role = this.currentUser.role;
+    this.email = this.currentUser.email;
+  }
 
   logout(){
     localStorage.clear();

@@ -17,13 +17,12 @@ const MONGO_URL = '';
 })
 export class LoginComponent implements OnInit {
   username: string = '';
-  email: string = '';
+  password: string = '';
   // errorMassage = "User credential not match";
   errorMassage = "";
-  password = '';
   ok = false;
 
-  user = {'username': '', 'email': ''}
+  user = {'username': '', 'password': ''}
   // constructor(private router:Router, private httpClient: HttpClient) { }
 
 constructor(private router:Router, private httpClient: HttpClient ){}
@@ -32,7 +31,7 @@ constructor(private router:Router, private httpClient: HttpClient ){}
   }
 
   submit(){
-    let user = {username:this.username, email: this.email};
+    let user = {username:this.username, email: this.password};
     this.httpClient.post(BACKEND_URL + '/login', user,  httpOptions)
     // this.httpClient.post(BACKEND_URL + '/login', user)
     .subscribe((data:any)=>{
@@ -66,39 +65,30 @@ constructor(private router:Router, private httpClient: HttpClient ){}
     })
   }
 
-  // submit(){
-  //   let user = {username:this.username, email: this.email};
-  //   this.httpClient.post(BACKEND_URL + '/api/auth', user,  httpOptions)
-  //   // this.httpClient.post(BACKEND_URL + '/login', user)
-  //   .subscribe((data:any)=>{
-  //     console.log(data)
-  //     // alert("posting: " +JSON.stringify(user));
+  login(){
+    let user = {'name': this.username, 'password':this.password}
+    // console.log(newUser);
+    this.httpClient.post(BACKEND_URL + '/api/auth', user,  httpOptions)
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+                  console.log(data)
 
-  //     // alert("postRes: " +JSON.stringify(data));
-  //   //   console.log(data.ok)
-  //   //   if (data.ok == false) { alert("email or password incorrect");
-  //   // }
-  //   //   else if (data.ok){
-  //   //     localStorage.setItem('valid', 'true');
-  //   //     localStorage.setItem('userid', data.userid.toString());
-  //   //     localStorage.setItem('username', data.username);
-  //   //     localStorage.setItem('email', data.email);
-  //   //     localStorage.setItem('role', data.role);
-  //   //     this.router.navigateByUrl("/home");
-  //   //   } else if (data.userData.ok){
-  //   //     localStorage.setItem('valid', 'true');
-  //   //     localStorage.setItem('userid', data.userData.userid.toString());
-  //   //     localStorage.setItem('username', data.userData.username);
-  //   //     localStorage.setItem('email', data.userData.email);
-  //   //     localStorage.setItem('role', data.userData.role);
+        if(data.valid){
+          // console.log(data)
 
-  //   //     localStorage.setItem('userArray', JSON.stringify(data.userArray));
-  //   //     localStorage.setItem('extendedUserArray', JSON.stringify(data.extendedUserArray));
+          // localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          // alert(JSON.stringify(data.ok));
+          this.router.navigateByUrl("/home").then(()=>{
+              window.location.reload();
 
-  //   //     this.router.navigateByUrl("/home").then(()=>{
-  //   //       window.location.reload();
-  //   //     })
-  //   //   } 
-  //   })
-  // }
+          });
+        } else {
+          alert('failed: ' + JSON.stringify(data.message));
+        }
+      });
+      // this.router.navigateByUrl("/users").then(()=>{
+      //   window.location.reload();
+      // })
+  };
 }

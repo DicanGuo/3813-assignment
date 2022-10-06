@@ -8,6 +8,7 @@ const httpOptions = {
 };
 const BACKEND_URL = 'http://localhost:3000';
 // for angular http methods
+var valid = false;
 
 @Component({
   selector: 'app-home',
@@ -15,18 +16,34 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  valid = localStorage.getItem('valid');
-  username = localStorage.getItem('username');
-  userid = localStorage.getItem('userid');
-  role = localStorage.getItem('role');
-  email = localStorage.getItem('email');
+
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid : boolean = false;
+  userid = '';
+  username = '';
+  role = '';
+  email = '';
+
   // groupsSession = localStorage.getItem('groupsSession')!;
   // groups = JSON.parse(this.groupsSession);
 
   constructor(private route: ActivatedRoute, private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    // console.log(this.currentUser!.valid)
+    // console.log(this.valid)
+    try {this.init()}
+    catch{}
+  }
 
+  init(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.valid = this.currentUser.valid;
+    this.userid = this.currentUser.user[0].id;
+    this.username = this.currentUser.user[0].name;
+    this.role = this.currentUser.user[0].role;
+    this.email = this.currentUser.user[0].email;
+    // console.log(this.currentUser.user[0]['name'])
   }
 
   chat(){

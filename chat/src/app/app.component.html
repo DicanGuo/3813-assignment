@@ -9,7 +9,7 @@
         <li class="active"><a class="nav-link" (click)="channel()" routerLink="/channels">Channel Management</a></li>      
       </ng-template>
 
-      <ng-template [ngIf]="valid== 'true'">
+      <ng-template [ngIf]="valid">
         <button (click)="logout()" id="submit" type="button" class="btn btn-danger" value="Log Out">Logout</button>
       </ng-template>
 
