@@ -52,7 +52,7 @@ MongoClient.connect(url, function(err,client){
     const db =client.db(dbName);
     require('./routes/auth.js')(app, db);
     require('./routes/createUser.js')(app, db);
-    // require('./routes/getchats.js')(app, db);
+    require('./routes/getUsers.js')(app, db);
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');
 

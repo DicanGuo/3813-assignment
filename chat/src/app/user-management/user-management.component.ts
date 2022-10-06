@@ -21,10 +21,23 @@ export class UserManagementComponent implements OnInit {
   email = localStorage.getItem('email');
   userArray = JSON.parse(localStorage.getItem('userArray')!);
   extendedUserArray = JSON.parse(localStorage.getItem('extendedUserArray')!);
-  
+  userlistArray = JSON.parse(localStorage.getItem('userList')!);
   constructor(private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.getUserList()
+  }
+
+  getUserList(){
+    this.httpClient.get(BACKEND_URL + '/api/getUsers')
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+        console.log(data)
+        console.log(JSON.stringify(data))
+        localStorage.setItem('userList', JSON.stringify(data));
+        // localStorage.setItem('extendedUserArray', JSON.stringify(data));
+
+      });
   }
 
   create(){
