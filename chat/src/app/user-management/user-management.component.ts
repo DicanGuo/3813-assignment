@@ -14,11 +14,12 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./user-management.component.css']
 })
 export class UserManagementComponent implements OnInit {
-  valid = localStorage.getItem('valid');
-  username = localStorage.getItem('username');
-  userid = localStorage.getItem('userid');
-  role = localStorage.getItem('role');
-  email = localStorage.getItem('email');
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid : boolean = false;
+  userid = '';
+  username = '';
+  role = '';
+  email = '';
   userArray = JSON.parse(localStorage.getItem('userArray')!);
   extendedUserArray = JSON.parse(localStorage.getItem('extendedUserArray')!);
   userlistArray = JSON.parse(localStorage.getItem('userList')!);
@@ -26,8 +27,19 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserList()
+    try {this.init()}
+    catch{}
   }
 
+  init(){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.valid = this.currentUser.valid;
+    this.userid = this.currentUser.user[0].id;
+    this.username = this.currentUser.user[0].name;
+    this.role = this.currentUser.user[0].role;
+    this.email = this.currentUser.user[0].email;
+    // console.log(this.currentUser.user[0]['name'])
+  }
   getUserList(){
     this.httpClient.get(BACKEND_URL + '/api/getUsers')
       .subscribe((data: any) => {
