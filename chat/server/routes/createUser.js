@@ -13,10 +13,9 @@ module.exports = function(app, db){
             if (count>0){
                 res.send({'ok':false, 'message':'User already exist'});
             }else{
-                collection.insertOne({'id':id,'name':uname, 'password':pwd, 'role':role,'email':email}), function (err,count){
-                    res.send({'ok':true});
-                }
-                // res.send({'ok':true});
+                collection.insertOne({'id':id,'name':uname, 'password':pwd, 'role':role,'email':email}, (err,count)=>{
+                    res.send({'ok':true, 'message':'User created'});
+                })
             }
         });
     });

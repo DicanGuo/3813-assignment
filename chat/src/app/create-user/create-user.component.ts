@@ -31,10 +31,10 @@ export class CreateUserComponent implements OnInit {
     // console.log(newUser);
     this.httpClient.post(BACKEND_URL + '/api/createUser', newUser,  httpOptions)
       .subscribe((data: any) => {
-        alert(JSON.stringify(data));
+        // alert(JSON.stringify(data));
         console.log(data)
         if(data.ok){
-          localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          // localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
           alert(JSON.stringify(data.message));
           this.router.navigateByUrl("/users");
         } else {
