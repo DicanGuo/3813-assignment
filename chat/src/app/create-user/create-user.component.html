@@ -10,5 +10,12 @@
         <input type="password" [(ngModel)]="password" name="password"> <br>  
     </div>
     <br>
-    <button class="btn btn-success" id="submit"(click)="create()">Create</button>
+    <div class="d-flex justify-content-between">
+        <div>
+            <button class="btn btn-success" id="submit"(click)="create()">Create</button>
+        </div>
+        <div>
+            <button class="btn btn-danger"><a class="nav-link pl-5" routerLink="/users">Cancel</a></button>
+        </div>
+    </div>
 </form>

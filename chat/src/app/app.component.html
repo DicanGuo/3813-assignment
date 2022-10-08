@@ -4,9 +4,9 @@
     <ul class="nav navbar-nav">
       <li class="active"><a class="nav-link" routerLink="/home">Home</a></li>
       <ng-template [ngIf]="role == 'super'">
-        <li class="active"><a class="nav-link" routerLink="/users">User Management</a></li>
-        <li class="active"><a class="nav-link" (click)="group()" routerLink="/group">Group Management</a></li>
-        <li class="active"><a class="nav-link" (click)="channel()" routerLink="/channels">Channel Management</a></li>      
+        <li class="active"><a class="nav-link" (click)="user()">User Management</a></li>
+        <li class="active"><a class="nav-link" (click)="group()">Group Management</a></li>
+        <li class="active"><a class="nav-link" (click)="channel()">Channel Management</a></li>      
       </ng-template>
 
       <ng-template [ngIf]="valid">

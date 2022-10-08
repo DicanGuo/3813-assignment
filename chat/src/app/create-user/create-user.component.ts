@@ -16,7 +16,7 @@ const BACKEND_URL = 'http://localhost:3000';
 export class CreateUserComponent implements OnInit {
   username = '';
   email = '';
-  userid = null;
+  userid = undefined;
   role ='';
   password='';
   // newUser = {username: '', email: ''}
@@ -27,7 +27,7 @@ export class CreateUserComponent implements OnInit {
   ngOnInit(): void {
   }
   create(){
-    let newUser = {'id':'', 'name': this.username, 'password':this.password, 'role': 'user', 'email': ''}
+    let newUser = {'id':undefined, 'name': this.username, 'password':this.password, 'role': 'user', 'email': ''}
     // console.log(newUser);
     this.httpClient.post(BACKEND_URL + '/api/createUser', newUser,  httpOptions)
       .subscribe((data: any) => {
@@ -36,13 +36,15 @@ export class CreateUserComponent implements OnInit {
         if(data.ok){
           // localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
           alert(JSON.stringify(data.message));
+          setTimeout(this.refreshWindow, 1000);
           this.router.navigateByUrl("/users");
         } else {
           alert('failed: ' + JSON.stringify(data.message));
         }
       });
-      // this.router.navigateByUrl("/users").then(()=>{
-      //   window.location.reload();
-      // })
   };
+
+  refreshWindow(){
+    window.location.reload();
+  }
 }

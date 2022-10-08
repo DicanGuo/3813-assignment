@@ -55,15 +55,13 @@ export class AppComponent {
     })
   }
   group(){
-    // let user = {role:this.role};
-    // this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
-    //   console.log(data);
-    //   localStorage.setItem('groupsSession', JSON.stringify(data));
-    // });
-    // reload page to show data
-    this.router.navigateByUrl('/group').then(()=>{
-      window.location.reload();
-    });
+    setTimeout(this.refreshWindow, 500);
+    this.router.navigateByUrl('/group');
+  }
+
+  user(){
+    setTimeout(this.refreshWindow, 500);
+    this.router.navigateByUrl('/users');
   }
 
   channel(){
@@ -78,12 +76,14 @@ export class AppComponent {
       console.log(data);
       localStorage.setItem('groupsSession', JSON.stringify(data));
     });
+    setTimeout(this.refreshWindow, 500);
+    this.router.navigateByUrl('/channels');
 
-    this.router.navigateByUrl('/channels').then(()=>{
-      window.location.reload();
-    });
+  };
 
-  }
+  refreshWindow(){
+    window.location.reload();
+  };
 
   
 }

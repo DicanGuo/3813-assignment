@@ -31,18 +31,12 @@ export class CreateGroupComponent implements OnInit {
     this.httpClient.post(BACKEND_URL + '/api/createGroup', newGroup,  httpOptions)
       .subscribe((data: any) => {
         console.log(data)
-        // console.log(data.ok)
-        // console.log(data.message)
-            //     alert(JSON.stringify(data));
-        // if(data.ok){
-        //   localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
-        //   alert(JSON.stringify(data.message));
-        //   this.router.navigateByUrl("/group");
-        // } else {
-        //   alert('failed: ' + JSON.stringify(data.message));
-        // }
-      });
-
+    });
+    setTimeout(this.refreshWindow, 1000);
+    this.router.navigateByUrl("/group");
+  }
+  refreshWindow(){
+    window.location.reload();
   }
   
 
