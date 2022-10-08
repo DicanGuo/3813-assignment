@@ -8,7 +8,7 @@
                 <ng-template [ngIf]="role== 'super'" class="d-flex justify-content-around">
                     <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
 
-                    <button id="submit" type="button" class="btn btn-primary" value="Log In" routerLink="/users">User Management</button>
+                    <button id="submit" type="button" class="btn btn-primary" value="Log In" (click)="user()">User Management</button>
                     <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
             
                     <button (click)="group()" id="submit" type="button" class="btn btn-primary" value="Log In">Group Management</button>
