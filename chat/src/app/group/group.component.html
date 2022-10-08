@@ -30,12 +30,15 @@
                     <td>{{group.groupassis}}</td>
                     <td>{{group.groupadmin}}</td>
                     <td>
-                        <button id="submit" type="button" class="btn btn-success" value="Edit">Channels</button>
+                        <button id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
+                    </td>
+                    <td>
+                        <button id="submit" type="button" class="btn btn-success" value="Channels">Channels</button>
                     </td>
                     <td>
                         <form>
 
-                            <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Edit">Remove</button>
+                            <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
                         </form>    
                     </td>
                 </tr>
