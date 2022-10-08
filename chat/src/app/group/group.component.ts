@@ -13,15 +13,16 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./group.component.css']
 })
 export class GroupComponent implements OnInit {
-  valid = localStorage.getItem('valid');
-  username = localStorage.getItem('username');
-  userid = localStorage.getItem('userid');
-  role = localStorage.getItem('role');
-  email = localStorage.getItem('email');
-  groupsSession = localStorage.getItem('groupsSession')!;
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid = this.currentUser.valid;
+  userid = this.currentUser.user[0].id;
+  username = this.currentUser.user[0].name;
+  role = this.currentUser.user[0].role;
+  email = this.currentUser.user[0].email;
+  groupsSession = localStorage.getItem('groups')!;
   groups = JSON.parse(this.groupsSession);
-  extendedUserArraySession = localStorage.getItem('extendedUserArray')!;
-  extendedUserArray = JSON.parse(this.extendedUserArraySession);
+  // extendedUserArraySession = localStorage.getItem('extendedUserArray')!;
+  // extendedUserArray = JSON.parse(this.extendedUserArraySession);
 
   addUser = '';
   asignAdmin = '';
@@ -32,7 +33,21 @@ export class GroupComponent implements OnInit {
   constructor(private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.getGroupList()
   }
+
+  getGroupList(){
+    this.httpClient.get(BACKEND_URL + '/api/getGroups')
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+        console.log(data)
+        console.log(JSON.stringify(data))
+        localStorage.setItem('groups', JSON.stringify(data));
+        // localStorage.setItem('extendedUserArray', JSON.stringify(data));
+
+      });
+  }
+
   test(){
     console.log(this.groups)
 
@@ -122,4 +137,6 @@ export class GroupComponent implements OnInit {
       }
     })
   }
+
+  
 }
