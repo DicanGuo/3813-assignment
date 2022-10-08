@@ -55,11 +55,11 @@ export class AppComponent {
     })
   }
   group(){
-    let user = {role:this.role};
-    this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
-      console.log(data);
-      localStorage.setItem('groupsSession', JSON.stringify(data));
-    });
+    // let user = {role:this.role};
+    // this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
+    //   console.log(data);
+    //   localStorage.setItem('groupsSession', JSON.stringify(data));
+    // });
     // reload page to show data
     this.router.navigateByUrl('/group').then(()=>{
       window.location.reload();
