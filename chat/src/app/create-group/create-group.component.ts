@@ -30,10 +30,16 @@ export class CreateGroupComponent implements OnInit {
     console.log(newGroup);
     this.httpClient.post(BACKEND_URL + '/api/createGroup', newGroup,  httpOptions)
       .subscribe((data: any) => {
-        console.log(data)
+        if(data.ok){
+          // localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          alert(JSON.stringify(data.message));
+          setTimeout(this.refreshWindow, 1000);
+          this.router.navigateByUrl("/group");
+        } else {
+          alert('failed: ' + JSON.stringify(data.message));
+        }
     });
-    setTimeout(this.refreshWindow, 1000);
-    this.router.navigateByUrl("/group");
+
   }
   refreshWindow(){
     window.location.reload();
