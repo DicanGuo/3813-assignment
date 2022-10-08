@@ -46,6 +46,8 @@ server.listen(http, PORT);
 
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
+var ObjectID = require('mongodb').ObjectId;
+
 MongoClient.connect(url, function(err,client){
     if(err){return console.log(err)}
     const dbName = '3813';
@@ -53,9 +55,10 @@ MongoClient.connect(url, function(err,client){
     require('./routes/auth.js')(app, db);
     require('./routes/createUser.js')(app, db);
     require('./routes/getUsers.js')(app, db);
+    require('./routes/deleteUser.js')(app, db, ObjectID);
+
     require('./routes/getGroups.js')(app, db);
     require('./routes/createGroup.js')(app, db);
-
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');
 

@@ -56,23 +56,37 @@ export class UserManagementComponent implements OnInit {
     this.router.navigateByUrl("/create-user");
 
   }
+  // delete(targetUser: any){
+  //   console.log(targetUser);
+  //   this.httpClient.post(BACKEND_URL + '/deleteuser', targetUser,  httpOptions)
+  //   // this.httpClient.post(BACKEND_URL + '/login', user)
+  //   .subscribe((data:any)=>{
+  //     // alert("posting: " +JSON.stringify(user));
+  //     console.log(data);
+  //     // alert("postRes: " +JSON.stringify(data));
+
+  //     if (data.ok){
+  //         console.log('ok')
+  //         localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+  //         alert(JSON.stringify(data.message));
+  //         window.location.reload();
+  //     }
+  //     else { alert(data.message);}
+  //   })
+  // }
   delete(targetUser: any){
     console.log(targetUser);
-    this.httpClient.post(BACKEND_URL + '/deleteuser', targetUser,  httpOptions)
-    // this.httpClient.post(BACKEND_URL + '/login', user)
-    .subscribe((data:any)=>{
-      // alert("posting: " +JSON.stringify(user));
-      console.log(data);
-      // alert("postRes: " +JSON.stringify(data));
+    this.httpClient.post(BACKEND_URL + '/api/deleteUser', targetUser,  httpOptions)
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+        console.log(data)
+        localStorage.setItem('userList', JSON.stringify(data));
+    });
+    setTimeout(this.refreshWindow, 500);
+  };
 
-      if (data.ok){
-          console.log('ok')
-          localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
-          alert(JSON.stringify(data.message));
-          window.location.reload();
-      }
-      else { alert(data.message);}
-    })
+  refreshWindow(){
+    window.location.reload();
   }
-
+  
 }
