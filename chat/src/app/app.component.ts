@@ -40,10 +40,11 @@ export class AppComponent {
   init(){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.valid = this.currentUser.valid;
-    this.userid = this.currentUser.id;
-    this.username = this.currentUser.name;
-    this.role = this.currentUser.role;
-    this.email = this.currentUser.email;
+    this.userid = this.currentUser.user[0].id;
+    this.username = this.currentUser.user[0].name;
+    this.role = this.currentUser.user[0].role;
+    this.email = this.currentUser.user[0].email;
+    // console.log(this.currentUser.user[0]['name'])
   }
 
   logout(){
