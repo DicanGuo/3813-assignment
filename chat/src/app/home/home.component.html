@@ -5,25 +5,69 @@
         <ng-template [ngIf]="valid">
             <div class="bd-example">
 
-                <ng-template [ngIf]="role== 'super'" class="d-flex justify-content-around">
+                <!-- <ng-template [ngIf]="role== 'super'" class="d-flex justify-content-around">
+                    <div class="container">
+                        <div class="row">
+                          <div class="col">
+                            1 of 2
+                          </div>
+                          <div class="col">
+                            2 of 2
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
+                        </div>
+                          <div class="col">
+                            <button id="submit" type="button" class="btn btn-primary" value="Log In" (click)="user()">User Management</button>
+                        </div>
+                          <div class="col">
+                            <button (click)="group()" id="submit" type="button" class="btn btn-primary" value="Log In">Group Management</button>
+                        </div>
+                        </div>
+                      </div>
                     <button  (click)="chat()"id="submit" type="button" class="btn btn-primary" value="Chat">Chat</button>
 
                     <button id="submit" type="button" class="btn btn-primary" value="Log In" (click)="user()">User Management</button>
-                    <!-- <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button> -->
+                    <button id="submit" type="button" class="fadeIn fourth" value="Log In">User Management</button>
             
                     <button (click)="group()" id="submit" type="button" class="btn btn-primary" value="Log In">Group Management</button>
             
-                </ng-template>
+                </ng-template> -->
             </div><br>
             <ng-template [ngIf]="valid">
                 <h3>
                     You are logged in as
                 </h3>
-                <p>Role: {{role}}</p>
-                <p>Username {{username}}</p>
-                <p>Userid {{userid}}</p>
-                <p> valid {{valid}}</p>
-                <p> </p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                        User ID:
+                        </div>
+                        <div class="col-sm">
+                        {{userid}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                        Username:
+                        </div>
+                        <div class="col-sm">
+                        {{username}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                        Role:
+                        </div>
+                        <div class="col-sm">
+                        {{role}}
+                        </div>
+                    </div>
+                </div>
+                <!-- <p> valid {{valid}}</p> -->
+
             </ng-template>
         </ng-template>
     </div>
