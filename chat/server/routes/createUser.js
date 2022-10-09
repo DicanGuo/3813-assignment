@@ -29,9 +29,9 @@ module.exports = function(app, db){
                         for(let j = 0; j< idList.length + 1; j++){
                             // console.log(j + " in list: "+(j in idList))
             
-                            if(!(idList.includes(j.toString()))){
+                            if(!(idList.includes(j))){
                                 console.log(j + ' is available')
-                                this.id = j.toString()
+                                this.id = j
                                 console.log('id set as: '+ this.id + type(this.id))
                                 break
                             }

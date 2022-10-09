@@ -11,7 +11,7 @@ module.exports = function(app, db, ObjectID){
         collection.deleteOne({'_id':targetid}, (err,result)=>{
             if(err)throw err;
             console.log(result)
-            collection.find().toArray((err,data)=>{
+            collection.find().sort({id:1}).toArray((err,data)=>{
                 for(i in data){
                     // console.log(i)
                     delete data[i]['password']
