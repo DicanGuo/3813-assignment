@@ -1,1 +1,43 @@
-<p>update-group works!</p>
+<h1>Updating Group {{id}}</h1><br>
+<form>
+    <div>
+        <p>Group ID: {{id}}</p>
+    </div>
+
+    <div>
+        <div class="d-flex  align-items-center justify-content-between">
+            <span>Group Admins:</span>
+            <button class="btn btn-primary" id="submit">Edit</button>
+        </div><br>
+        <div *ngFor="let admin of groupadmin">
+            <p>{{admin}}</p>
+        </div>
+        <!-- <input type="text" [(ngModel)]="groupadmin" name="groupadmin"> <br>   -->
+    </div><br>
+    <div>
+        <div class="d-flex  align-items-center justify-content-between">
+            <span>Group Assistants:</span>
+            <button class="btn btn-primary" id="submit">Edit</button>
+        </div><br>
+        <div *ngFor="let assis of groupassis">
+            <p>{{assis}}</p>
+        </div>
+    </div><br>
+    <div>
+        <div class="d-flex  align-items-center justify-content-between">
+            <span>Group Users:</span>
+            <button class="btn btn-primary" id="submit">Edit</button>
+        </div><br>
+        <div *ngFor="let users of groupusers">
+            <p>{{users}}</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div>
+            <button class="btn btn-success" id="submit">Update</button>
+        </div>
+        <div>
+            <button class="btn btn-danger" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</form>
