@@ -51,10 +51,13 @@ module.exports = function(app, db, ObjectID){
                 query = {'_id':ObjectId, 'id':id, 'groupusers':groupusers, 'groupassis':groupassis, 'groupadmin':groupadmin}
                 collection.updateOne({'_id':ObjectId}, {$set:query}, (err,data)=>{
                     console.log(data)
-                    collection.find({'_id':ObjectId}).toArray((err,data)=>{
-                        data[0]['ok']=true;
-                        data[0]['message']='Group updated';
-                        res.send(data[0])
+                    collection.find({}).toArray((err,data)=>{
+                        console.log(data)
+                        let sendData = {};
+                        sendData['groups']=data;
+                        sendData['ok']=true;
+                        sendData['message']='Group updated';
+                        res.send(sendData)
                     })
                 })
             }

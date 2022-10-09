@@ -23,7 +23,7 @@
             </div>
             <div>
                 <form>
-                    <button (click)="delete(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <button (click)="deleteAdmin(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>
@@ -33,14 +33,11 @@
         <div class="col-sm-4" >
             <h5>Assistants</h5>
         </div>        
-
         <div class="col-sm-3">
             <form>
                 <div class="d-flex justify-content-between">
-                    <input>
-
-                    <button id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
-
+                    <input [(ngModel)]="newAssis" name="newAssis" type="text">
+                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
                 </div>
             </form>  
         </div>
@@ -52,7 +49,7 @@
             </div>
             <div>
                 <form>
-                    <button id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <button (click)="deleteAssis(assis)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>
@@ -66,9 +63,9 @@
         <div class="col-sm-3">
             <form>
                 <div class="d-flex justify-content-between">
-                    <input>
+                    <input [(ngModel)]="newUser" name="newUser" type="text">
 
-                    <button id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
 
                 </div>
             </form>  
@@ -81,7 +78,7 @@
             </div>
             <div>
                 <form>
-                    <button id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <button (click)="deleteUser(user)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>

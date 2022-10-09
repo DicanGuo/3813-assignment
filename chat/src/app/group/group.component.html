@@ -26,7 +26,11 @@
                             {{groupadmin}}
                         </div>
                     </td>
-                    <td>{{group.groupassis}}</td>
+                    <td>
+                        <div *ngFor="let groupassis of group.groupassis">
+                            {{groupassis}}
+                        </div>
+                    </td>
                     <td>
                         <div *ngFor="let groupuser of group.groupusers">
                             {{groupuser}}
