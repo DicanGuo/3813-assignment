@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand  d-flex">
+<nav class="navbar navbar-expand  d-flex bg-secondary">
   <div class="container-fluid">
     <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li class="active p-2"><a class="nav-link" routerLink="/home">Home</a></li>
+      <button class="btn btn-warning p-2" routerLink="/home">Home</button>
       <ng-template [ngIf]="role == 'super'">
-        <li class="active p-2"><a class="nav-link" (click)="user()" routerLink="">User Management</a></li>
-        <li class="active p-2"><a class="nav-link" (click)="group()" routerLink="">Group Management</a></li>
-        <li class="active p-2"><a class="nav-link" (click)="channel()" routerLink="">Channel Management</a></li>      
+        <button class="btn btn-secondary p-2" (click)="user()">User Management</button>
+        <button class="btn btn-secondary p-2"  (click)="group()">Group Management</button>
+        <button class="btn btn-secondary p-2"  (click)="channel()">Channel Management</button>
       </ng-template>
       <!-- <li> <a class="nav-link" routerLink="/chat">Chat</a></li> -->
       <!-- <li><a class="nav-link" routerLink="/account">Account</a></li> -->
