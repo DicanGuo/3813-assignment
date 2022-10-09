@@ -53,24 +53,6 @@ export class GroupComponent implements OnInit {
 
   }
 
-  // delete(target: any){
-  //   console.log(target);
-  //   this.httpClient.post(BACKEND_URL + '/deletegroup', target,  httpOptions)
-  //   // this.httpClient.post(BACKEND_URL + '/login', user)
-  //   .subscribe((data:any)=>{
-  //     // alert("posting: " +JSON.stringify(user));
-  //     console.log(data);
-  //     // alert("postRes: " +JSON.stringify(data));
-
-  //     if (data.ok){
-  //         console.log('ok')
-  //         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
-  //         alert(JSON.stringify(data.message));
-  //         window.location.reload();
-  //     }
-  //     else { alert(data.message);}
-  //   })
-  // }
   delete(targetGroup: any){
     console.log(targetGroup);
     this.httpClient.post(BACKEND_URL + '/api/deleteGroup', targetGroup,  httpOptions)
@@ -81,6 +63,14 @@ export class GroupComponent implements OnInit {
     });
     setTimeout(this.refreshWindow, 500);
   };
+
+  edit(targetGroup: any){
+    console.log(targetGroup);
+    let targetId = targetGroup.id;
+    localStorage.setItem('targetGroup', JSON.stringify(targetGroup));
+    this.router.navigateByUrl('/update-group/'+ targetId);
+  }
+
   addUsertoGroup(group:any){
     let addUser = this.addUser;
     // let targetGroup = {"groupid": this.group,"groupusers":this.group,"groupassis":this.targetGroup.groupassis,"groupadmin":this.targetGroup.groupadmin};

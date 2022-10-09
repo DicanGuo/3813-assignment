@@ -15,6 +15,7 @@ import { AddGroupComponent } from './add-group/add-group.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
+import { UpdateGroupComponent } from './update-group/update-group.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CreateGroupComponent } from './create-group/create-group.component';
     AddGroupComponent,
     UserManagementComponent,
     CreateUserComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    UpdateGroupComponent
   ],
   imports: [
     BrowserModule,
