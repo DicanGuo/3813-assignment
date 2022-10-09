@@ -45,18 +45,6 @@ export class UpdateGroupComponent implements OnInit {
   }
 
   update(){
-    if(!(this.newAdmin == '')){
-      this.groupadmin.push(this.newAdmin);
-    }
-    if(!(this.newAssis == '')){
-      this.groupassis.push(this.newAdmin);
-    }
-    if(!(this.newUser == '')){
-      this.groupusers.push(this.newAdmin);
-    }
-    if(this.newAdmin == '' && this.newAssis == '' && this.newUser == ''){
-      alert('Input is empty !')
-    }else{
       let targetGroup = {'_id':this._id, 'id':this.id, 'groupadmin': this.groupadmin, 'groupassis':this.groupassis, 'groupusers': this.groupusers}
       // console.log(newUser);
       this.httpClient.put(BACKEND_URL + '/api/updateGroup', targetGroup,  httpOptions)
@@ -72,9 +60,35 @@ export class UpdateGroupComponent implements OnInit {
             this.refreshWindow();
           }
         });
-    }
-
   };
+  add(){
+    if(!(this.newAdmin == '')){
+      this.groupadmin.push(this.newAdmin);
+    }
+    if(!(this.newAssis == '')){
+      this.groupassis.push(this.newAdmin);
+    }
+    if(!(this.newUser == '')){
+      this.groupusers.push(this.newAdmin);
+    }
+    if(this.newAdmin == '' && this.newAssis == '' && this.newUser == ''){
+      alert('Input is empty !')
+    }else{
+      this.update();
+    }
+  }
+  delete(admin: String){
+    console.log(admin)
+
+    for(let i=0;i< this.groupadmin.length;i++){
+      console.log(this.groupadmin[i])
+      if(admin == this.groupadmin[i]){
+        this.groupadmin.splice(i,1)
+      }
+    }
+    console.log(this.groupadmin)
+    this.update();
+  }
 
   refreshWindow(){
     window.location.reload();

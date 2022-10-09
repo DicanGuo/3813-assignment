@@ -10,7 +10,7 @@
                 <div class="d-flex justify-content-between">
                     <input [(ngModel)]="newAdmin" name="newAdmin" type="text">
 
-                    <button (click)="update()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
 
                 </div>
             </form>  
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <form>
-                    <button id="submit" type="button" class="btn btn-danger" value="Remove">x</button>
+                    <button (click)="delete(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>
@@ -52,7 +52,7 @@
             </div>
             <div>
                 <form>
-                    <button id="submit" type="button" class="btn btn-danger" value="Remove">x</button>
+                    <button id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>
@@ -81,7 +81,7 @@
             </div>
             <div>
                 <form>
-                    <button id="submit" type="button" class="btn btn-danger" value="Remove">x</button>
+                    <button id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                 </form>  
             </div>
         </div>
