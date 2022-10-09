@@ -21,7 +21,11 @@
             <tbody>
                 <tr *ngFor="let group of groups">
                     <td>{{group.id}}</td>
-                    <td>{{group.groupadmin}}</td>
+                    <td>
+                        <div *ngFor="let groupadmin of group.groupadmin">
+                            {{groupadmin}}
+                        </div>
+                    </td>
                     <td>{{group.groupassis}}</td>
                     <td>
                         <div *ngFor="let groupuser of group.groupusers">

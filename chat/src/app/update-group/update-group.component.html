@@ -8,9 +8,9 @@
         <div class="col-sm-3">
             <form>
                 <div class="d-flex justify-content-between">
-                    <input>
+                    <input [(ngModel)]="newAdmin" name="newAdmin" type="text">
 
-                    <button id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+                    <button (click)="update()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
 
                 </div>
             </form>  
