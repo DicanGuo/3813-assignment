@@ -53,25 +53,34 @@ export class GroupComponent implements OnInit {
 
   }
 
-  delete(target: any){
-    console.log(target);
-    this.httpClient.post(BACKEND_URL + '/deletegroup', target,  httpOptions)
-    // this.httpClient.post(BACKEND_URL + '/login', user)
-    .subscribe((data:any)=>{
-      // alert("posting: " +JSON.stringify(user));
-      console.log(data);
-      // alert("postRes: " +JSON.stringify(data));
+  // delete(target: any){
+  //   console.log(target);
+  //   this.httpClient.post(BACKEND_URL + '/deletegroup', target,  httpOptions)
+  //   // this.httpClient.post(BACKEND_URL + '/login', user)
+  //   .subscribe((data:any)=>{
+  //     // alert("posting: " +JSON.stringify(user));
+  //     console.log(data);
+  //     // alert("postRes: " +JSON.stringify(data));
 
-      if (data.ok){
-          console.log('ok')
-          localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
-          alert(JSON.stringify(data.message));
-          window.location.reload();
-      }
-      else { alert(data.message);}
-    })
-  }
-
+  //     if (data.ok){
+  //         console.log('ok')
+  //         localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
+  //         alert(JSON.stringify(data.message));
+  //         window.location.reload();
+  //     }
+  //     else { alert(data.message);}
+  //   })
+  // }
+  delete(targetGroup: any){
+    console.log(targetGroup);
+    this.httpClient.post(BACKEND_URL + '/api/deleteGroup', targetGroup,  httpOptions)
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+        console.log(data)
+        localStorage.setItem('groups', JSON.stringify(data));
+    });
+    setTimeout(this.refreshWindow, 500);
+  };
   addUsertoGroup(group:any){
     let addUser = this.addUser;
     // let targetGroup = {"groupid": this.group,"groupusers":this.group,"groupassis":this.targetGroup.groupassis,"groupadmin":this.targetGroup.groupadmin};
@@ -139,4 +148,7 @@ export class GroupComponent implements OnInit {
   }
 
   
+  refreshWindow(){
+    window.location.reload();
+  }
 }

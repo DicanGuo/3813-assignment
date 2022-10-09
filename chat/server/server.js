@@ -59,6 +59,8 @@ MongoClient.connect(url, function(err,client){
 
     require('./routes/getGroups.js')(app, db);
     require('./routes/createGroup.js')(app, db);
+    require('./routes/deleteGroup.js')(app, db, ObjectID);
+
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');
 

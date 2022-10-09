@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     <th>Group ID</th>
-                    <th>group users</th>
-                    <th>Group Assistants</th>
                     <th>Group Admin</th>
+                    <th>Group Assistants</th>
+                    <th>Group users</th>
                     <th></th>
                     <th colspan="2">Action</th>
                     <th>
@@ -22,13 +22,13 @@
             <tbody>
                 <tr *ngFor="let group of groups">
                     <td>{{group.id}}</td>
+                    <td>{{group.groupadmin}}</td>
+                    <td>{{group.groupassis}}</td>
                     <td>
                         <div *ngFor="let groupuser of group.groupusers">
                             {{groupuser}}
                         </div>
                     </td>
-                    <td>{{group.groupassis}}</td>
-                    <td>{{group.groupadmin}}</td>
                     <td>
                         <button id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
                     </td>
