@@ -16,6 +16,8 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { UpdateGroupComponent } from './update-group/update-group.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
+import { UpdateChannelComponent } from './update-channel/update-channel.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UpdateGroupComponent } from './update-group/update-group.component';
     UserManagementComponent,
     CreateUserComponent,
     CreateGroupComponent,
-    UpdateGroupComponent
+    UpdateGroupComponent,
+    CreateChannelComponent,
+    UpdateChannelComponent
   ],
   imports: [
     BrowserModule,
