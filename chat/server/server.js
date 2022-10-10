@@ -61,10 +61,11 @@ MongoClient.connect(url, function(err,client){
     require('./routes/createGroup.js')(app, db);
     require('./routes/deleteGroup.js')(app, db, ObjectID);
     require('./routes/updateGroup.js')(app, db, ObjectID);
-
+    
     require('./routes/getChannels.js')(app, db);
     require('./routes/createChannel.js')(app, db);
     require('./routes/deleteChannel.js')(app, db, ObjectID);
+    require('./routes/updateChannel.js')(app, db, ObjectID);
 
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');

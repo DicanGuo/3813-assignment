@@ -12,7 +12,10 @@
                     <th></th>
                     <th colspan="2">Action</th>
                     <th>
-                        <button (click)="new()" class="btn btn-primary" id="submit">Create</button>
+                        <button (click)="create()" class="btn btn-primary" id="submit">Create</button>
+                    </th>
+                    <th>
+                        <button (click)="back()" class="btn btn-secondary" id="submit">Back</button>
                     </th>
                 </tr>
             </thead>
@@ -28,7 +31,7 @@
                         <button (click)="chat()" id="submit" type="button" class="btn btn-success" value="Chat">Chat</button>
                     </td>
                     <td>
-                        <button  id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
+                        <button (click)="edit(channel)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
                     </td>
 
                     <td>

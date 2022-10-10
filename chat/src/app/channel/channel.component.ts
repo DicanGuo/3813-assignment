@@ -55,12 +55,8 @@ export class ChannelComponent implements OnInit {
 
     });
   }
-  create(){
-    console.log(this.id)
-    this.router.navigateByUrl("/group/"+ this.id + "/create-channel");
 
-  }
-  new(){
+  create(){
     let newChannel = {'id':undefined, 'groupid': this.id, 'channelusers': []}
     console.log(newChannel);
     this.httpClient.post(BACKEND_URL + '/api/createChannel', newChannel,  httpOptions)
@@ -86,8 +82,10 @@ export class ChannelComponent implements OnInit {
     });
     setTimeout(this.refreshWindow, 500);
   }
-  edit(){
-
+  edit(targetChannel:any){
+    localStorage.setItem('targetChannel', JSON.stringify(targetChannel));
+    let channelID = targetChannel.id
+    this.router.navigateByUrl('/group/' + this.id + '/channels/' + channelID);
   }
   chat(){
     console.log(this.username)
@@ -97,7 +95,9 @@ export class ChannelComponent implements OnInit {
     }else {
       alert('user not valid')
     }
-
+  }
+  back(){
+    this.router.navigateByUrl('/group');
   }
   refreshWindow(){
     window.location.reload();
