@@ -10,6 +10,9 @@ import { AddGroupComponent } from './add-group/add-group.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CreateGroupComponent } from './create-group/create-group.component';
 import { UpdateGroupComponent } from './update-group/update-group.component';
+import { CreateChannelComponent } from './create-channel/create-channel.component';
+
+import { UpdateChannelComponent } from './update-channel/update-channel.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +27,8 @@ const routes: Routes = [
   {path: 'create-group', component: CreateGroupComponent},
   {path: 'update-group/:id', component: UpdateGroupComponent},
   {path: 'group/:id/channels', component: ChannelComponent},
+  {path: 'group/:id/channels/:id', component: UpdateChannelComponent},
+  {path: 'group/:id/create-channel', component: CreateChannelComponent},
 
 
 ];

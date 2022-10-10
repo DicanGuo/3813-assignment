@@ -5,9 +5,9 @@ module.exports = function(app, db){
         console.log('targetID: ' + targetID)
         const collection = db.collection('channels');
         collection.find({'groupid':targetID}).sort({id:1}).toArray((err,data)=>{
-            for(i in data){
-                console.log(i)
-            }
+            // for(i in data){
+            //     console.log(i)
+            // }
             res.send(data);
             console.log('channels found');
         })

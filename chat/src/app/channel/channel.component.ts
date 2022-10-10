@@ -19,6 +19,7 @@ export class ChannelComponent implements OnInit {
   username = this.currentUser.user[0].name;
   role = this.currentUser.user[0].role;
   email = this.currentUser.user[0].email;
+  // group
   _id = undefined;
   id = undefined;
   groupadmin: String[] = [];
@@ -54,6 +55,40 @@ export class ChannelComponent implements OnInit {
 
     });
   }
+  create(){
+    console.log(this.id)
+    this.router.navigateByUrl("/group/"+ this.id + "/create-channel");
+
+  }
+  new(){
+    let newChannel = {'id':undefined, 'groupid': this.id, 'channelusers': []}
+    console.log(newChannel);
+    this.httpClient.post(BACKEND_URL + '/api/createChannel', newChannel,  httpOptions)
+      .subscribe((data: any) => {
+        if(data.ok){
+          // localStorage.setItem('extendedUserArray', JSON.stringify(data.uArray));
+          alert(JSON.stringify(data.message));
+          setTimeout(this.refreshWindow, 1000);
+          // this.router.navigateByUrl("/group");
+        } else {
+          alert('failed: ' + JSON.stringify(data.message));
+        }
+    });
+  }
+  delete(targetChannel: any){
+    
+    console.log(targetChannel);
+    this.httpClient.post(BACKEND_URL + '/api/deleteChannel', targetChannel,  httpOptions)
+      .subscribe((data: any) => {
+        // alert(JSON.stringify(data));
+        console.log(data)
+        localStorage.setItem('channels', JSON.stringify(data));
+    });
+    setTimeout(this.refreshWindow, 500);
+  }
+  edit(){
+
+  }
   chat(){
     console.log(this.username)
     if (this.valid){
@@ -64,4 +99,8 @@ export class ChannelComponent implements OnInit {
     }
 
   }
+  refreshWindow(){
+    window.location.reload();
+  }
+  
 }

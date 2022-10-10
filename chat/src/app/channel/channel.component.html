@@ -12,7 +12,7 @@
                     <th></th>
                     <th colspan="2">Action</th>
                     <th>
-                        <button class="btn btn-primary" id="submit" routerLink="/create-channel">Create</button>
+                        <button (click)="new()" class="btn btn-primary" id="submit">Create</button>
                     </th>
                 </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <td>
                         <form>
 
-                            <button  id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                            <button (click)="delete(channel)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
                         </form>    
                     </td>
                 </tr>
