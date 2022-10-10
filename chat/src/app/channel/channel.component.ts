@@ -13,91 +13,47 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./channel.component.css']
 })
 export class ChannelComponent implements OnInit {
-  valid = localStorage.getItem('valid');
-  username = localStorage.getItem('username');
-  userid = localStorage.getItem('userid');
-  role = localStorage.getItem('role');
-  email = localStorage.getItem('email');
-  groupsSession = localStorage.getItem('groupsSession')!;
-  groups = JSON.parse(this.groupsSession);
-  extendedUserArraySession = localStorage.getItem('extendedUserArray')!;
-  extendedUserArray = JSON.parse(this.extendedUserArraySession);
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid = this.currentUser.valid;
+  userid = this.currentUser.user[0].id;
+  username = this.currentUser.user[0].name;
+  role = this.currentUser.user[0].role;
+  email = this.currentUser.user[0].email;
+  _id = undefined;
+  id = undefined;
+  groupadmin: String[] = [];
+  groupassis: String[] = [];
+  groupusers: String[] = [];
+  channelsSession = localStorage.getItem('channels')!;
+  channels = JSON.parse(this.channelsSession);
 
-  channelSession = localStorage.getItem('channelSession')!;
-  channels = JSON.parse(this.channelSession);
-  addUser = '';
-  targetGroup = [];
-  deleteUser = '';
   constructor(private router:Router, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.init();
+    this.getChannels();
   }
-  createChannel(group:any){
-    // let user = {role:this.role};
-    this.httpClient.post(BACKEND_URL + '/createchannel', group,  httpOptions).subscribe((data:any)=>{
-      console.log(data);
-      if(data.ok){
-        alert(JSON.stringify(data.message));
-
-        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
-            // reload page to show data
-        this.router.navigateByUrl('/channels')
-        .then(()=>{window.location.reload();});
-          }
-    });
-
+  init(){
+    let targetgroup = JSON.parse(localStorage.getItem('targetGroup')!);
+    this._id = targetgroup._id;
+    this.id = targetgroup.id;
+    this.groupadmin = targetgroup.groupadmin;
+    this.groupassis = targetgroup.groupassis;
+    this.groupusers = targetgroup.groupusers;
   }
-  deleteChannel(group:any, channel:any){
-    let postData = {group, channel};
-    console.log(postData)
-    this.httpClient.post(BACKEND_URL + '/deletechannel', postData,  httpOptions).subscribe((data:any)=>{
-      if(data.ok){
-        console.log(data)
-        alert(JSON.stringify(data.message));
+  getChannels(){
+    let query = {"_id":this._id,"id":this.id,"groupusers": this.groupusers,"groupassis":this.groupassis,"groupadmin":this.groupadmin};
+    this.httpClient.post(BACKEND_URL + '/api/getChannels', query).subscribe((data: any) => {
+      // alert(JSON.stringify(data));
+      console.log(data)
+      console.log(JSON.stringify(data))
+      localStorage.setItem('channels', JSON.stringify(data));
+      this.channels=data;
+      console.log(this.channels)
+      // localStorage.setItem('extendedUserArray', JSON.stringify(data));
 
-        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
-            // reload page to show data
-        this.router.navigateByUrl('/channels')
-        .then(()=>{window.location.reload();});
-          }
     });
   }
-  updateChannel(channel:any){
-    let addUser = this.addUser;
-    let postData = {addUser, channel};
-    console.log('posting: '+JSON.stringify(postData))
-    this.httpClient.post(BACKEND_URL + '/updatechannel', postData,  httpOptions).subscribe((data:any)=>{
-      if(data.ok){
-        console.log('return: '+ data);
-        alert(JSON.stringify(data.message));
-        localStorage.setItem('channelSession', JSON.stringify(data.cArray));
-        window.location.reload();
-      } else {
-        alert(JSON.stringify(data.message))
-        window.location.reload();
-
-      }
-    });
-  }
-
-  removeFromChannel(user:any, channel:any){
-    let deleteUser = user;
-    let postData = {deleteUser, channel};
-    console.log('posting: '+JSON.stringify(postData))
-    this.httpClient.post(BACKEND_URL + '/removeFromChannel', postData,  httpOptions).subscribe((data:any)=>{
-      if(data.ok){
-        console.log('return: '+ data);
-        // alert(JSON.stringify(data.message));
-        // localStorage.setItem('channelSession', JSON.stringify(data.cArray));
-        window.location.reload();
-      } else {
-        alert(JSON.stringify(data.message))
-        // window.location.reload();
-
-      }
-    });
-  }
-
   chat(){
     console.log(this.username)
     if (this.valid){

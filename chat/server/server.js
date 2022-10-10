@@ -62,6 +62,8 @@ MongoClient.connect(url, function(err,client){
     require('./routes/deleteGroup.js')(app, db, ObjectID);
     require('./routes/updateGroup.js')(app, db, ObjectID);
 
+    require('./routes/getChannels.js')(app, db);
+
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');
     

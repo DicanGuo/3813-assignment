@@ -1,1 +1,45 @@
-<h1>Channel works</h1>
+<h1>Channel List</h1>
+
+<!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button> -->
+
+<div *ngIf="role== 'super'">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Channel ID</th>
+                    <th>Channel users</th>
+                    <th></th>
+                    <th colspan="2">Action</th>
+                    <th>
+                        <button class="btn btn-primary" id="submit" routerLink="/create-channel">Create</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let channel of channels">
+                    <td>{{channel.id}}</td>
+                    <td>
+                        <div *ngFor="let channeluser of channel.channelusers">
+                            {{channeluser}}
+                        </div>
+                    </td>
+                    <td>
+                        <button (click)="chat()" id="submit" type="button" class="btn btn-success" value="Chat">Chat</button>
+                    </td>
+                    <td>
+                        <button  id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
+                    </td>
+
+                    <td>
+                        <form>
+
+                            <button  id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                        </form>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+</div>
