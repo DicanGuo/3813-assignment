@@ -17,13 +17,13 @@ const routes: Routes = [
   {path: 'chat/:id', component: ChatComponent},
   {path: 'login', component: LoginComponent},
   {path: 'group', component: GroupComponent},
-  {path: 'group/:id/channel/:id', component: ChannelComponent},
+  // {path: 'group/:id/channel/:id', component: ChannelComponent},
   {path: 'users', component: UserManagementComponent},
   {path: 'add-group', component: AddGroupComponent},
   {path: 'create-user', component: CreateUserComponent},
   {path: 'create-group', component: CreateGroupComponent},
   {path: 'update-group/:id', component: UpdateGroupComponent},
-  {path: 'channels', component: ChannelComponent},
+  {path: 'group/:id/channels', component: ChannelComponent},
 
 
 ];

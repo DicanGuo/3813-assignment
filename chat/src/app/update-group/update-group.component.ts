@@ -69,7 +69,7 @@ export class UpdateGroupComponent implements OnInit {
 
             // localStorage.setItem('groups', JSON.stringify(data.uArray));
             alert(JSON.stringify(receivedData.message));
-            // setTimeout(this.refreshWindow, 1000);
+            this.refreshWindow();
           } else {
             alert('failed: ' + JSON.stringify(receivedData.message));
             this.refreshWindow();
@@ -77,19 +77,34 @@ export class UpdateGroupComponent implements OnInit {
         });
   };
   add(){
-    if(!(this.newAdmin == '')){
-      this.groupadmin.push(this.newAdmin);
-    }
-    if(!(this.newAssis == '')){
-      this.groupassis.push(this.newAssis);
-    }
-    if(!(this.newUser == '')){
-      this.groupusers.push(this.newUser);
-    }
+
     if(this.newAdmin == '' && this.newAssis == '' && this.newUser == ''){
-      alert('Input is empty !')
+      alert('Input is empty !');
+      this.refreshWindow();
     }else{
-      this.update();
+      if(this.groupadmin.includes(this.newAdmin)){
+        alert('User is already an Admin !');
+        this.refreshWindow();
+      }
+      else if(this.groupassis.includes(this.newAssis)){
+        alert('User is already an Admin !');
+        this.refreshWindow();
+      }
+      else if(this.groupusers.includes(this.newUser)){
+        alert('User is already an Admin !');
+        this.refreshWindow();
+      }else{
+        if(!(this.newAdmin == '')){
+          this.groupadmin.push(this.newAdmin);
+        }
+        if(!(this.newAssis == '')){
+          this.groupassis.push(this.newAssis);
+        }
+        if(!(this.newUser == '')){
+          this.groupusers.push(this.newUser);
+        }
+        this.update();
+      }
     }
   }
   deleteAdmin(admin: String){

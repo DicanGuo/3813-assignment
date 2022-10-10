@@ -71,71 +71,78 @@ export class GroupComponent implements OnInit {
     this.router.navigateByUrl('/update-group/'+ targetId);
   }
 
-  addUsertoGroup(group:any){
-    let addUser = this.addUser;
-    // let targetGroup = {"groupid": this.group,"groupusers":this.group,"groupassis":this.targetGroup.groupassis,"groupadmin":this.targetGroup.groupadmin};
-    // console.log(addUser);
-    // console.log(group.groupusers);
+  channel(targetGroup: any){
+    let targetId = targetGroup.id;
+    localStorage.setItem('targetGroup', JSON.stringify(targetGroup));
+    this.router.navigateByUrl('/group/'+ targetId + '/channels');
 
-    group.groupusers.push(String(addUser));
-    // console.log(group.groupusers);
-    console.log(group);
-
-    this.httpClient.post(BACKEND_URL + '/updategroup', group,  httpOptions)
-    .subscribe((data:any)=>{
-      if(data.ok){
-        // alert(data.ok);
-
-        alert(data.message);
-        localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
-
-        window.location.reload();
-      }else{
-        // alert(data.ok);
-
-        alert(data.message);
-        window.location.reload();
-      }
-    })
   }
 
-  assignUser(group:any){
-    let asignAdmin = this.asignAdmin;
-    let asignAssis = this.asignAssis;
-    console.log(asignAdmin)
-    console.log(asignAssis)
+  // addUsertoGroup(group:any){
+  //   let addUser = this.addUser;
+  //   // let targetGroup = {"groupid": this.group,"groupusers":this.group,"groupassis":this.targetGroup.groupassis,"groupadmin":this.targetGroup.groupadmin};
+  //   // console.log(addUser);
+  //   // console.log(group.groupusers);
 
-    let editGroup = group;
-    console.log(editGroup);
-    console.log(editGroup.groupadmin.push(String(asignAdmin)));
+  //   group.groupusers.push(String(addUser));
+  //   // console.log(group.groupusers);
+  //   console.log(group);
 
-    // if(!(asignAdmin='')){
-    //   editGroup.groupadmin.push(JSON.stringify(asignAdmin));
-    // }
-    // if(!(asignAssis='')){
-    //   editGroup.groupassis.push(JSON.stringify(asignAssis));
-    // }
+  //   this.httpClient.post(BACKEND_URL + '/updategroup', group,  httpOptions)
+  //   .subscribe((data:any)=>{
+  //     if(data.ok){
+  //       // alert(data.ok);
 
-    // console.log(group.groupusers);
-    // console.log(editGroup);
+  //       alert(data.message);
+  //       localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
 
-    this.httpClient.post(BACKEND_URL + '/assignUser', editGroup,  httpOptions)
-    .subscribe((data:any)=>{
-      if(data.ok){
-        // alert(data.ok);
+  //       window.location.reload();
+  //     }else{
+  //       // alert(data.ok);
 
-        alert(data.message);
-        localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
+  //       alert(data.message);
+  //       window.location.reload();
+  //     }
+  //   })
+  // }
 
-        window.location.reload();
-      }else{
-        // alert(data.ok);
+  // assignUser(group:any){
+  //   let asignAdmin = this.asignAdmin;
+  //   let asignAssis = this.asignAssis;
+  //   console.log(asignAdmin)
+  //   console.log(asignAssis)
 
-        alert(data.message);
-        window.location.reload();
-      }
-    })
-  }
+  //   let editGroup = group;
+  //   console.log(editGroup);
+  //   console.log(editGroup.groupadmin.push(String(asignAdmin)));
+
+  //   // if(!(asignAdmin='')){
+  //   //   editGroup.groupadmin.push(JSON.stringify(asignAdmin));
+  //   // }
+  //   // if(!(asignAssis='')){
+  //   //   editGroup.groupassis.push(JSON.stringify(asignAssis));
+  //   // }
+
+  //   // console.log(group.groupusers);
+  //   // console.log(editGroup);
+
+  //   this.httpClient.post(BACKEND_URL + '/assignUser', editGroup,  httpOptions)
+  //   .subscribe((data:any)=>{
+  //     if(data.ok){
+  //       // alert(data.ok);
+
+  //       alert(data.message);
+  //       localStorage.setItem('groupsSession', JSON.stringify(data.gArray));
+
+  //       window.location.reload();
+  //     }else{
+  //       // alert(data.ok);
+
+  //       alert(data.message);
+  //       window.location.reload();
+  //     }
+  //   })
+  // }
 
   
   refreshWindow(){

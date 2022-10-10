@@ -64,22 +64,22 @@ export class AppComponent {
     this.router.navigateByUrl('/users');
   }
 
-  channel(){
-    let user = {role:this.role};
-    this.httpClient.post(BACKEND_URL + '/channel', user,  httpOptions).subscribe((data:any)=>{
-      console.log(data);
-      localStorage.setItem('channelSession', JSON.stringify(data));
-    });
-    // reload page to show data
-    // .then(()=>{window.location.reload();});
-    this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
-      console.log(data);
-      localStorage.setItem('groupsSession', JSON.stringify(data));
-    });
-    setTimeout(this.refreshWindow, 500);
-    this.router.navigateByUrl('/channels');
+  // channel(){
+  //   let user = {role:this.role};
+  //   this.httpClient.post(BACKEND_URL + '/channel', user,  httpOptions).subscribe((data:any)=>{
+  //     console.log(data);
+  //     localStorage.setItem('channelSession', JSON.stringify(data));
+  //   });
+  //   // reload page to show data
+  //   // .then(()=>{window.location.reload();});
+  //   this.httpClient.post(BACKEND_URL + '/group', user,  httpOptions).subscribe((data:any)=>{
+  //     console.log(data);
+  //     localStorage.setItem('groupsSession', JSON.stringify(data));
+  //   });
+  //   setTimeout(this.refreshWindow, 500);
+  //   this.router.navigateByUrl('/channels');
 
-  };
+  // };
 
   refreshWindow(){
     window.location.reload();

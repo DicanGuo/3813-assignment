@@ -30,7 +30,7 @@ module.exports = function(app, db, ObjectID){
                 list.push(groupadmin[i])
             }
         }
-        console.log(list)
+        // console.log('user list: '+list)
 
         collection2.find().toArray((err,users)=>{
             for(i in users){
