@@ -1,1 +1,23 @@
-<p>update-channel works!</p>
+
+<div class="container" style="max-width:30rem">
+    <h1>Editing Channel {{id}}</h1>
+    <div class="d-flex justify-content-between pt-2 pb-5">
+        <input [(ngModel)]="newUser" name="newUser" type="text">
+        <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Add">Add User</button>
+        <button (click)="back()" id="submit" type="button" class="btn btn-secondary" value="Add">Back</button>
+    
+    </div>
+    <h3>Channel Users:</h3>
+    <div class="row" style="background-color:lavender;">
+        <div *ngFor="let user of channelusers" class="d-flex justify-content-between align-items-center pb-2">
+            <div>    
+                {{user}}
+            </div>
+            <div>
+                <form>
+                    <button (click)="deleteUser(user)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                </form>  
+            </div>
+        </div>
+    </div>
+</div>

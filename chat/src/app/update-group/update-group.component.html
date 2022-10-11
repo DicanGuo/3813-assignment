@@ -1,85 +1,94 @@
-<h1>Updating Group {{id}}</h1>
-    <!-- admin -->
-    <div class="row align-items-center pt-5">
-        <div class="col-sm-4" >
-            <h5>Admins</h5>
-        </div>        
 
-        <div class="col-sm-3">
-            <form>
-                <div class="d-flex justify-content-between">
-                    <input [(ngModel)]="newAdmin" name="newAdmin" type="text">
-
-                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
-
-                </div>
-            </form>  
+    <div class="container" style="max-width:30rem">
+        <div class="d-flex justify-content-between">
+            <h1>Updating Group {{id}}</h1>
+            <!-- admin -->
+            <button id="submit" type="button" class="btn btn-secondary" value="Remove" routerLink="/group">Back</button>
         </div>
-    </div><br>
-    <div class="row" style="background-color:lavenderblush;">
-        <div *ngFor="let admin of groupadmin" class="d-flex justify-content-between align-items-center pb-2">
-            <div>    
-                {{admin}}
-            </div>
-            <div>
+
+
+        <div class="row align-items-center pt-5">
+            <div class="col-sm-4" >
+                <h5>Admins</h5>
+            </div>        
+    
+            <div class="col-sm-3">
                 <form>
-                    <button (click)="deleteAdmin(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <div class="d-flex justify-content-between">
+                        <input [(ngModel)]="newAdmin" name="newAdmin" type="text">
+    
+                        <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+    
+                    </div>
                 </form>  
             </div>
-        </div>
-    </div>
-    <!-- assis -->
-    <div class="row align-items-center pt-5">
-        <div class="col-sm-4" >
-            <h5>Assistants</h5>
-        </div>        
-        <div class="col-sm-3">
-            <form>
-                <div class="d-flex justify-content-between">
-                    <input [(ngModel)]="newAssis" name="newAssis" type="text">
-                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+        </div><br>
+        <div class="row" style="background-color:lavender;">
+            <div *ngFor="let admin of groupadmin" class="d-flex justify-content-between align-items-center pb-2">
+                <div>    
+                    {{admin}}
                 </div>
-            </form>  
-        </div>
-    </div><br>
-    <div class="row" style="background-color:lavenderblush;">
-        <div *ngFor="let assis of groupassis" class="d-flex justify-content-between align-items-center pb-2">
-            <div>    
-                {{assis}}
+                <div>
+                    <form>
+                        <button (click)="deleteAdmin(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    </form>  
+                </div>
             </div>
-            <div>
+        </div>
+        <!-- assis -->
+        <div class="row align-items-center pt-5">
+            <div class="col-sm-4" >
+                <h5>Assistants</h5>
+            </div>        
+            <div class="col-sm-3">
                 <form>
-                    <button (click)="deleteAssis(assis)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <div class="d-flex justify-content-between">
+                        <input [(ngModel)]="newAssis" name="newAssis" type="text">
+                        <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+                    </div>
                 </form>  
             </div>
-        </div>
-    </div>
-    <!-- Users -->
-    <div class="row align-items-center pt-5">
-        <div class="col-sm-4" >
-            <h5>Users</h5>
-        </div>        
-
-        <div class="col-sm-3">
-            <form>
-                <div class="d-flex justify-content-between">
-                    <input [(ngModel)]="newUser" name="newUser" type="text">
-
-                    <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
-
+        </div><br>
+        <div class="row" style="background-color:lavender;">
+            <div *ngFor="let assis of groupassis" class="d-flex justify-content-between align-items-center pb-2">
+                <div>    
+                    {{assis}}
                 </div>
-            </form>  
-        </div>
-    </div><br>
-    <div class="row" style="background-color:lavenderblush;">
-        <div *ngFor="let user of groupusers" class="d-flex justify-content-between align-items-center pb-2">
-            <div>    
-                {{user}}
+                <div>
+                    <form>
+                        <button (click)="deleteAssis(assis)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    </form>  
+                </div>
             </div>
-            <div>
+        </div>
+        <!-- Users -->
+        <div class="row align-items-center pt-5">
+            <div class="col-sm-4" >
+                <h5>Users</h5>
+            </div>        
+    
+            <div class="col-sm-3">
                 <form>
-                    <button (click)="deleteUser(user)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    <div class="d-flex justify-content-between">
+                        <input [(ngModel)]="newUser" name="newUser" type="text">
+    
+                        <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
+    
+                    </div>
                 </form>  
             </div>
+        </div><br>
+        <div class="row" style="background-color:lavender;">
+            <div *ngFor="let user of groupusers" class="d-flex justify-content-between align-items-center pb-2">
+                <div>    
+                    {{user}}
+                </div>
+                <div>
+                    <form>
+                        <button (click)="deleteUser(user)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
+                    </form>  
+                </div>
+            </div>
         </div>
+        
     </div>
