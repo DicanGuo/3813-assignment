@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Route } from '@angular/router';
+import { SocketService } from '../services/socket.service';
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
@@ -28,7 +30,7 @@ export class ChannelComponent implements OnInit {
   channelsSession = localStorage.getItem('channels')!;
   channels = JSON.parse(this.channelsSession);
 
-  constructor(private router:Router, private httpClient: HttpClient) { }
+  constructor(private router:Router, private httpClient: HttpClient, private socketService:SocketService) { }
 
   ngOnInit(): void {
     this.init();
@@ -97,6 +99,9 @@ export class ChannelComponent implements OnInit {
     console.log(targetChannel)
     localStorage.setItem('targetChannel', JSON.stringify(targetChannel));
     let channelID = targetChannel.id
+    console.log(channelID,typeof channelID)
+
+
     this.router.navigateByUrl('/group/' + this.id + '/channels/' + channelID + '/chat/'+this.username);
 
     // }else {

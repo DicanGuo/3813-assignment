@@ -1,5 +1,6 @@
 module.exports = {
-    connect: function(io, PORT){
+    connect: function(io, PORT,socketRoom,channels){
+        console.log(socketRoom)
         io.on('connection', (socket)=>{
             console.log('user connection on port '+PORT+ ' : ' + socket.id);
             socket.on('message', (message)=>{
@@ -7,6 +8,8 @@ module.exports = {
             })
 
             socket.on('joinchannel',(channel)=>{
+                console.log(socket.id)
+
                     socket.join(channel,()=>{
                         var inroomSocketarray =false;
                         for(i=0;i<socketRoom.length;i++){
@@ -17,21 +20,14 @@ module.exports = {
                         }
                         if(inroomSocketarray == false){
                             socketRoom.push([socket.id,channel])
-                            var hasroomnum = false;
-
                             for(let j=0;j<socketRoomnum.length;j++){
                                 if(socketRoomnum[j][0]==channel){
-                                    socketRoomnum[i][1] = socketRoomnum[i][1] + 1;
-                                    hasroomnum = true;
                                 }
                             }
-                            if(hasroomnum == false){
-                                socketRoomnum.push([channel,1])
-                            }
                         }
-                        chat.in(channel).emit("notice","A new user has joined")
+                        io.in(channel).emit("notice","A new user has joined")
                     });
-                    return chat.in(channel).emit('joined',channel);  
+                    return io.in(channel).emit('joined',channel);  
             });
         });
     }

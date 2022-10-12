@@ -27,7 +27,8 @@ const PORT = 3000;
 var cors = require('cors');
 app.use(cors());
 
-sockets.connect(io,PORT);
+// sockets.connect(io,PORT);
+
 server.listen(http, PORT);
 
 // app.post('/login', require('./router/postLogin'));
@@ -66,6 +67,22 @@ MongoClient.connect(url, function(err,client){
     require('./routes/createChannel.js')(app, db);
     require('./routes/deleteChannel.js')(app, db, ObjectID);
     require('./routes/updateChannel.js')(app, db, ObjectID);
+    const collection = db.collection('credentials');
+    const collection2 = db.collection('channels');
+
+    var socketRoom = [];
+    var channels = [];
+    collection.find().sort({id:1}).toArray((err,data)=>{
+        console.log(data)
+        for(i in data){
+            socketRoom.push([data[i]['name'],undefined]);
+    }})
+    collection2.find().sort({id:1}).toArray((err,data)=>{
+        console.log(data)
+        for(i in data){
+            channels.push(data[i]);
+    }})
+    sockets.connect(io,PORT, socketRoom,channels);
 
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');

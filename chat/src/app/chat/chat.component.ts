@@ -36,6 +36,8 @@ export class ChatComponent implements OnInit {
   }
   private initIoConnection(){
     this.socketService.initSocket();
+    this.socketService.joinchannel([this.username, this.currentChannel.id]);
+
     this.ioConnection = this.socketService.getMessage()
       .subscribe((message:any)=>{
       this.messages.push(message);
@@ -63,4 +65,5 @@ export class ChatComponent implements OnInit {
     this.router.navigateByUrl('/group/' + this.currentGroup.id + '/channels');
 
   }
+
 }
