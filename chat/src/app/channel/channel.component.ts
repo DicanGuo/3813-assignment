@@ -85,16 +85,23 @@ export class ChannelComponent implements OnInit {
   edit(targetChannel:any){
     localStorage.setItem('targetChannel', JSON.stringify(targetChannel));
     let channelID = targetChannel.id
-    this.router.navigateByUrl('/group/' + this.id + '/channels/' + channelID);
+    this.router.navigateByUrl('/group/' + this.id + '/update-channels/' + channelID);
   }
-  chat(){
-    console.log(this.username)
-    if (this.valid){
-      this.router.navigateByUrl('/chat/' + this.username);
+  chat(targetChannel:any){
 
-    }else {
-      alert('user not valid')
-    }
+    // localStorage.setItem('targetChannel', JSON.stringify(targetChannel));
+    // let channelID = targetChannel.id
+    // this.router.navigateByUrl('/chat/' + this.username);
+
+
+    console.log(targetChannel)
+    localStorage.setItem('targetChannel', JSON.stringify(targetChannel));
+    let channelID = targetChannel.id
+    this.router.navigateByUrl('/group/' + this.id + '/channels/' + channelID + '/chat/'+this.username);
+
+    // }else {
+    //   alert('user not valid')
+    // }
   }
   back(){
     this.router.navigateByUrl('/group');

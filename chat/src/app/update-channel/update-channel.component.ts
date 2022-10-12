@@ -111,6 +111,7 @@ export class UpdateChannelComponent implements OnInit {
   };
 
   back(){
+    localStorage.removeItem('targetChannel');
     this.router.navigateByUrl('/group/' + this.groupid + '/channels');
   }
 

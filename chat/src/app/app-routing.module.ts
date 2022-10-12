@@ -17,7 +17,7 @@ import { UpdateChannelComponent } from './update-channel/update-channel.componen
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'chat/:id', component: ChatComponent},
+  // {path: 'chat/:id', component: ChatComponent},
   {path: 'login', component: LoginComponent},
   {path: 'group', component: GroupComponent},
   // {path: 'group/:id/channel/:id', component: ChannelComponent},
@@ -27,8 +27,9 @@ const routes: Routes = [
   {path: 'create-group', component: CreateGroupComponent},
   {path: 'update-group/:id', component: UpdateGroupComponent},
   {path: 'group/:id/channels', component: ChannelComponent},
-  {path: 'group/:id/channels/:id', component: UpdateChannelComponent},
+  {path: 'group/:id/update-channels/:id', component: UpdateChannelComponent},
   {path: 'group/:id/create-channel', component: CreateChannelComponent},
+  {path: 'group/:id/channels/:id/chat/:id', component: ChatComponent},
 
 
 ];
