@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import* as io from 'socket.io-client';
 import { SocketService } from '../services/socket.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  currentGroup = JSON.parse(localStorage.getItem('targetGroup')!);
   username = localStorage.getItem('username');
   birthdate = localStorage.getItem('birthdate');
   age = localStorage.getItem('age');
@@ -18,10 +21,11 @@ export class ChatComponent implements OnInit {
   messagecontent  : string = '';
   errorMassage: string = '';
   messages:string[] = [];
-
+  roomnotice:string="";
+  currentChannel = JSON.parse(localStorage.getItem('targetChannel')!);
   ioConnection:any;
 
-  constructor(private socketService:SocketService){}
+  constructor(private socketService:SocketService, private router:Router){}
   // constructor() { 
   //   this.socket = io(this.url);
   //   this.socket.on('new-messages':m=>{alert(m);});
@@ -36,8 +40,16 @@ export class ChatComponent implements OnInit {
       .subscribe((message:any)=>{
       this.messages.push(message);
     });
+    this.socketService.notice((message: any)=>{
+      this.roomnotice=message
+    });
+    this.socketService.joined((message: any)=>{
+      this.currentChannel =message
+    });
   }
-
+  clearnotice(){
+    this.roomnotice = "";
+  }
   chat(){
     if(this.messagecontent){
       this.socketService.send(this.messagecontent);
@@ -45,5 +57,10 @@ export class ChatComponent implements OnInit {
     }else{
       console.log('no message');
     }
+  }
+  back(){
+    
+    this.router.navigateByUrl('/group/' + this.currentGroup.id + '/channels');
+
   }
 }

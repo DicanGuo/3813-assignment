@@ -26,4 +26,17 @@ export class SocketService {
       });
     });
   }
+  joinchannel(currentChannel:any):void{
+    this.socket.emit("joinchannel",currentChannel);
+  }
+  leavechannel(currentChannel:any):void{
+    this.socket.emit("leavechannel",currentChannel);
+  }
+  joined(next:any){
+    this.socket.on('joined',(res: any)=>next(res));
+  }
+  notice(next:any){
+    this.socket.on('notice',(res:any)=>next(res));
+  }
+
 }
