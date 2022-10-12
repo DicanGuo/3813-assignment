@@ -13,6 +13,9 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./update-group.component.css']
 })
 export class UpdateGroupComponent implements OnInit {
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  username = this.currentUser.user[0].name;
+  role = this.currentUser.user[0].role;
   _id = undefined;
   id = undefined;
   groupadmin: String[] = [];

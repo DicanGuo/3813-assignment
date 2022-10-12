@@ -2,7 +2,7 @@
 
 <!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button> -->
 
-<div *ngIf="role== 'super'">
+<div>
     <div class="col-md-6">
         <table class="table">
             <thead>
@@ -34,9 +34,13 @@
                         <button (click)="edit(channel)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
                     </td>
 
-                    <td>
+                    <td *ngIf="role == 'super' " >
                         <form>
-
+                            <button (click)="delete(channel)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                        </form>    
+                    </td>
+                    <td *ngIf="groupadmin.includes(username)" >
+                        <form>
                             <button (click)="delete(channel)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
                         </form>    
                     </td>

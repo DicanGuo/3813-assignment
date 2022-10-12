@@ -14,7 +14,7 @@
     
             <div class="col-sm-3">
                 <form>
-                    <div class="d-flex justify-content-between">
+                    <div *ngIf="role == 'super'" class="d-flex justify-content-between">
                         <input [(ngModel)]="newAdmin" name="newAdmin" type="text">
     
                         <button (click)="add()" id="submit" type="button" class="btn btn-success" value="Remove">Assign</button>
@@ -28,7 +28,7 @@
                 <div>    
                     {{admin}}
                 </div>
-                <div>
+                <div *ngIf="role == 'super'">
                     <form>
                         <button (click)="deleteAdmin(admin)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                     </form>  
@@ -40,7 +40,7 @@
             <div class="col-sm-4" >
                 <h5>Assistants</h5>
             </div>        
-            <div class="col-sm-3">
+            <div  *ngIf="role == 'super' || groupusers.includes(username)" class="col-sm-3">
                 <form>
                     <div class="d-flex justify-content-between">
                         <input [(ngModel)]="newAssis" name="newAssis" type="text">
@@ -54,7 +54,7 @@
                 <div>    
                     {{assis}}
                 </div>
-                <div>
+                <div  *ngIf="role == 'super' || groupusers.includes(username)">
                     <form>
                         <button (click)="deleteAssis(assis)" id="submit" type="button" class="btn btn-danger" value="Remove">Unassign</button>
                     </form>  

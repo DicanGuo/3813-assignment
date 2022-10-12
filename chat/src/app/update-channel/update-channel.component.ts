@@ -21,6 +21,10 @@ export class UpdateChannelComponent implements OnInit {
   channelusers: String[] = [];
   targetChannel = JSON.parse(localStorage.getItem('targetChannel')!);
 
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  username = this.currentUser.user[0].name;
+  role = this.currentUser.user[0].role;
+
   constructor(private router:Router, private httpClient: HttpClient ) { 
   }
   ngOnInit(): void {

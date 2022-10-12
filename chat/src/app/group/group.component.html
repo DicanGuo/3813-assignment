@@ -2,7 +2,7 @@
 
 <!-- <button (click)="test()" id="submit" type="button" class="fadeIn fourth" value="channel">test</button> -->
 
-<div *ngIf="role== 'super'">
+<div>
     <div class="col-md-6">
         <table class="table">
             <thead>
@@ -13,42 +13,102 @@
                     <th>Group users</th>
                     <th></th>
                     <th colspan="2">Action</th>
-                    <th>
+                    <th *ngIf="role == 'super'">
                         <button class="btn btn-primary" id="submit" routerLink="/create-group">Create</button>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let group of groups">
-                    <td>{{group.id}}</td>
-                    <td>
-                        <div *ngFor="let groupadmin of group.groupadmin">
-                            {{groupadmin}}
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngFor="let groupassis of group.groupassis">
-                            {{groupassis}}
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngFor="let groupuser of group.groupusers">
-                            {{groupuser}}
-                        </div>
-                    </td>
-                    <td>
-                        <button (click)="edit(group)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
-                    </td>
-                    <td>
-                        <button (click)="channel(group)" id="submit" type="button" class="btn btn-success" value="Channels">Channels</button>
-                    </td>
-                    <td>
-                        <form>
+                <ng-template [ngIf]="role == 'super'"  [ngIfElse]= "elseBlock">
+                    <tr *ngFor="let group of groups" >
+                        <td>{{group.id}}</td>
+                        <td>
+                            <div *ngFor="let groupadmin of group.groupadmin">
+                                {{groupadmin}}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let groupassis of group.groupassis">
+                                {{groupassis}}
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let groupuser of group.groupusers">
+                                {{groupuser}}
+                            </div>
+                        </td>
+                        <td>
+                            <button (click)="edit(group)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
+                        </td>
+                        <td>
+                            <button (click)="channel(group)" id="submit" type="button" class="btn btn-success" value="Channels">Channels</button>
+                        </td>
+                        <td>
+                            <form>
+    
+                                <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                            </form>    
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <tr *ngFor="let group of groups" >
+                        <ng-template [ngIf]="group.groupusers.includes(username) || group.groupadmin.includes(username) || group.groupassis.includes(username)">
+                            <td>{{group.id}}</td>
+                            <td>
+                                <div *ngFor="let groupadmin of group.groupadmin">
+                                    {{groupadmin}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let groupassis of group.groupassis">
+                                    {{groupassis}}
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngFor="let groupuser of group.groupusers">
+                                    {{groupuser}}
+                                </div>
+                            </td>
+                            <td>
+                                <button (click)="channel(group)" id="submit" type="button" class="btn btn-success" value="Channels">Channels</button>
+                            </td>
+                            <td *ngIf="role == 'super'">
+                                <button (click)="edit(group)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
+                            </td>
+                            <ng-template [ngIf]="group.groupadmin.includes(username) || group.groupassis.includes(username)"  [ngIfElse]= "adminblock">
+                                <td>
+                                <button (click)="edit(group)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
 
-                            <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
-                        </form>    
-                    </td>
-                </tr>
+                                </td>
+                            </ng-template>
+                            <ng-template #adminblock>
+                                <td>
+                                </td>
+                            </ng-template>
+                            <ng-template [ngIf]="group.groupadmin.includes(username)"  [ngIfElse]= "adminblock">
+                                <td>
+                                    <form>
+        
+                                        <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                                    </form>  
+                                </td>
+                            </ng-template>
+                            <ng-template #adminblock>
+                                <td>
+                                </td>
+                            </ng-template>
+
+                            <td *ngIf="role == 'super'">
+                                <form>
+        
+                                    <button (click)="delete(group)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
+                                </form>    
+                            </td>
+                        </ng-template>
+
+                    </tr>
+                </ng-template>
             </tbody>
         </table>
       </div>
