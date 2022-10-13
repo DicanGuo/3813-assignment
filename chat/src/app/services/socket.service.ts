@@ -26,11 +26,11 @@ export class SocketService {
       });
     });
   }
-  joinchannel(currentChannel:any):void{
-    this.socket.emit("joinchannel",currentChannel);
+  joinchannel(data:any):void{
+    this.socket.emit("joinchannel",data);
   }
-  leavechannel(currentChannel:any):void{
-    this.socket.emit("leavechannel",currentChannel);
+  leavechannel(data:any):void{
+    this.socket.emit("leavechannel",data);
   }
   joined(next:any){
     this.socket.on('joined',(res: any)=>next(res));

@@ -14,43 +14,64 @@ module.exports = {
                 // channelString = data.toString()
                 // console.log(channelString)
 
-                    socket.join(data.channel);
+                socket.join(data.channel);
                         // console.log(channel);
-            socket.on('message', (message)=>{
-                io.to(data.channel).emit('message', message);
-            })
-                    var inroom =false;
-                        // console.log(inroomSocketarray)
-                    if(socketRoom.length > 0){
-                        socket.join(socketRoom);
+                socket.on('message', (message)=>{
+                    io.to(data.channel).emit('message', message);
+                })
+                var inroom =false;
+                // console.log(socketRoom.length)
+                    
+                if(socketRoom.length > 0){
+                    socket.join(socketRoom);
 
-                        console.log(socketRoom)
-                        for(i=0;i<socketRoom.length;i++){
-                            // console.log(socketRoom[i][0])
-                            if(socketRoom[i][0] == data.name){
-                                // console.log("in room")
-                                // console.log('=================')    
-                                socketRoom[i][1] = data.channel;
-                                // console.log(socketRoom[i])
-                                inroom = true;
-                            }
+                    // console.log(socketRoom)
+                    for(i=0;i<socketRoom.length;i++){
+                        // console.log(socketRoom[i][0])
+                        if(socketRoom[i][0] == data.name){
+                            // console.log("in room")
+                            // console.log('=================')    
+                            socketRoom[i][1] = data.channel;
+                            // console.log(socketRoom[i])
+                            inroom = true;
                         }
-                        
-                    }else{
-                        socketRoom.push([data.name,data.channel])
-                    // console.log(socketRoom)
-
+                        else{
+                            socketRoom.push([data.name,data.channel,socket.id])
+                            console.log('NEW USER: ' + socketRoom)
+                            console.log('NEW USER: ' + socketRoom.length)
+                            break
+                        }
                     }
+                    console.log('RESULT: ' + socketRoom)
+                    console.log('RESULT: ' + socketRoom.length)
+
+                }else{
+                    socketRoom.push([data.name,data.channel,socket.id])
+                console.log('EMPTY: ' + socketRoom)
+                console.log('EMPTY: ' + socketRoom.length)
+
+                }
 
 
-                    if(inroom == false){
-                        socketRoom.push([data.name,data.channel])
-                    }
-                    // console.log(socketRoom)
+                // if(inroom == false){
+                //     socketRoom.push([data.name,data.channel])
+                // }
+                // console.log(socketRoom)
 
-                    io.in(data.channel).emit("notice","A new user has joined")
-                    return io.in(data.channel).emit('joined',data.channel);  
+                io.in(data.channel).emit("notice", data.name + " has joined the channel")
+                return io.in(data.channel).emit('joined',data.channel);  
             });
+
+            socket.on('leavechannel',(data)=>{
+                for(let i=0; i<socketRoom.length; i++){
+                    if(socketRoom[i][0]== data.name){
+                        socketRoom.splice(i,1);
+                        socket.leave(data.channel);
+                        io.to(data.channel).emit("notice", data.name + " has left the channel");
+                    }
+                }
+                
+            })
         });
     }
 }

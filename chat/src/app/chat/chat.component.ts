@@ -24,6 +24,8 @@ export class ChatComponent implements OnInit {
   messages:string[] = [];
   roomnotice:string="";
   currentChannel = JSON.parse(localStorage.getItem('targetChannel')!);
+    // currentChannel = JSON.parse(localStorage.getItem('targetChannel')!);
+
   ioConnection:any;
 
   constructor(private socketService:SocketService, private router:Router){}
@@ -39,6 +41,8 @@ export class ChatComponent implements OnInit {
   }
   private initIoConnection(){
     this.socketService.initSocket();
+    this.currentChannel = JSON.parse(localStorage.getItem('targetChannel')!);
+
     this.socketService.joinchannel({name: this.username, channel: this.currentChannel.id});
 
     this.ioConnection = this.socketService.getMessage()
@@ -66,9 +70,13 @@ export class ChatComponent implements OnInit {
     }
   }
   back(){
-    
+    this.socketService.leavechannel({name: this.username, channel: this.currentChannel.id});
+
     this.router.navigateByUrl('/group/' + this.currentGroup.id + '/channels');
 
+  }
+  notice(){
+    
   }
 
 }
