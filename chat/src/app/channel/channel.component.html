@@ -34,12 +34,12 @@
                         <button (click)="edit(channel)" id="submit" type="button" class="btn btn-secondary" value="Edit">Edit</button>
                     </td>
 
-                    <td *ngIf="role == 'super' " >
+                    <!-- <td *ngIf="role == 'super' " >
                         <form>
                             <button (click)="delete(channel)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
                         </form>    
-                    </td>
-                    <td *ngIf="groupadmin.includes(username)" >
+                    </td> -->
+                    <td *ngIf="groupadmin.includes(username) || role == 'super'" >
                         <form>
                             <button (click)="delete(channel)" id="submit" type="button" class="btn btn-danger" value="Remove">Remove</button>
                         </form>    
