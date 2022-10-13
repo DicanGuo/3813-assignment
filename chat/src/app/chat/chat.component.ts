@@ -71,12 +71,12 @@ export class ChatComponent implements OnInit {
   }
   back(){
     this.socketService.leavechannel({name: this.username, channel: this.currentChannel.id});
-
+    this.messagecontent = '';
+    this.errorMassage = '';
+    this.messages = [];
+    this.roomnotice="";
     this.router.navigateByUrl('/group/' + this.currentGroup.id + '/channels');
 
-  }
-  notice(){
-    
   }
 
 }

@@ -2,6 +2,8 @@
     <div id="formContent">
       <h1 id = 'errorMassage'>{{errorMassage}}</h1>
       <h1>Channel {{currentChannel.id}}</h1>
+      <h4>Notice:</h4>
+      {{roomnotice}}
       <form id="chatForm">
         <input type="text" [(ngModel)]="messagecontent" id="messagecontent" class="fadeIn second" name="messagecontent" placeholder="Say something..."><br><br>
         <button (click)="chat()" type="button" class="btn btn-success" value="Post">Post</button>
