@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class ChatComponent implements OnInit {
   currentGroup = JSON.parse(localStorage.getItem('targetGroup')!);
-  username = localStorage.getItem('username');
-  birthdate = localStorage.getItem('birthdate');
-  age = localStorage.getItem('age');
-  email = localStorage.getItem('email');
-  valid = localStorage.getItem('valid');
+  currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+  valid = this.currentUser.valid;
+  userid = this.currentUser.user[0].id;
+  username = this.currentUser.user[0].name;
+  role = this.currentUser.user[0].role;
+  email = this.currentUser.user[0].email;
 
   messagecontent  : string = '';
   errorMassage: string = '';
@@ -33,10 +34,12 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.initIoConnection();
+    console.log(this.username)
+
   }
   private initIoConnection(){
     this.socketService.initSocket();
-    this.socketService.joinchannel([this.username, this.currentChannel.id]);
+    this.socketService.joinchannel({name: this.username, channel: this.currentChannel.id});
 
     this.ioConnection = this.socketService.getMessage()
       .subscribe((message:any)=>{
@@ -53,8 +56,10 @@ export class ChatComponent implements OnInit {
     this.roomnotice = "";
   }
   chat(){
+    // console.log(this.username)
     if(this.messagecontent){
-      this.socketService.send(this.messagecontent);
+      let sendingMessage = this.username + ' says: ' + this.messagecontent
+      this.socketService.send(sendingMessage);
       this.messagecontent = '';
     }else{
       console.log('no message');

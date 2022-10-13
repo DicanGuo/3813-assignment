@@ -68,21 +68,29 @@ MongoClient.connect(url, function(err,client){
     require('./routes/deleteChannel.js')(app, db, ObjectID);
     require('./routes/updateChannel.js')(app, db, ObjectID);
     const collection = db.collection('credentials');
-    const collection2 = db.collection('channels');
+    // const collection2 = db.collection('channels');
 
-    var socketRoom = [];
-    var channels = [];
-    collection.find().sort({id:1}).toArray((err,data)=>{
-        console.log(data)
-        for(i in data){
-            socketRoom.push([data[i]['name'],undefined]);
-    }})
-    collection2.find().sort({id:1}).toArray((err,data)=>{
-        console.log(data)
-        for(i in data){
-            channels.push(data[i]);
-    }})
-    sockets.connect(io,PORT, socketRoom,channels);
+    // var socketRoom = [];
+    // var channels = [];
+    // collection.find().sort({id:1}).toArray((err,data)=>{
+    //     for(i in data){
+
+    //         socketRoom.push([data[i]['name'], -1]);
+    //         console.log('Inside connection' + socketRoom)
+    //     }
+    //     console.log('Outside connection' + socketRoom[0])
+
+
+    // })
+    sockets.connect(io,PORT);
+
+
+    // collection2.find().sort({id:1}).toArray((err,data)=>{
+    //     // console.log(data)
+    //     for(i in data){
+    //         channels.push(data[i]);
+    // }})
+    // sockets.connect(io,PORT, socketRoom,channels);
 
     // require('./routes/socket.js')(app, io, db);
     require('./listen.js');
